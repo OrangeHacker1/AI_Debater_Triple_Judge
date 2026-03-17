@@ -38,6 +38,9 @@ Accuracy Results:
 -"direct_samples": 150   
 -"self_consistency_samples": 150   
 
+Accuracy Graph:   
+![Commonsense QA Graph 1](commonsense_qa_accuracy_plot_1.png "Commonsense QA Graph 1")
+
 # Analysis
 
 Looking at the Fact Varification section, it was found that there was a 65% accuracy with the debate models. This was due to issues with conflict.

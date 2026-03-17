@@ -1,0 +1,402 @@
+[
+  {
+    "question": "TNFAIP3 is a glioblastoma tumor suppressor.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "The minor G allele of FOXO3 up-regulates IL-10.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "BCL-2 activation antagonizes the apoptotic effects of c-Myc.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Cytochrome c is transferred from cytosol to the mitochondrial intermembrane space during apoptosis.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "MEK inhibitors are effective treatments in RAS-driven mouse models of cancer.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "In breast cancer, the loss of myoepithelial cells slows the transition of ductal carcinoma in situ to invasive carcinoma.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "The tissue surrounding the granuloma in an immune cell induces an anti-inflammatory immune response.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Medications to treat obesity do not have side effects.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "CD28 signals regulate trafficking of murine auto-reactive T cells into target tissues.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "TMEM27 is a marker for beta cells.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Patients with panic anxiety show decreased CSF levels of hypocretin.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Surfactin producing cells and exopolymer producing cells cooperate to generate \"Van Gogh\" bundles that have sliding abilities on specialized media.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "DRD1 proteins enable Pol V transcription in vivo.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "General exercise therapy is more effective than scapular stabilizer exercises in reducing pain and improving function of the shoulder.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "The one-child policy has created a hospitable environment for female infants.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "There is no known interaction between Pioneer factor OCT3/4 and major chromatin remodeling factors.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Converting apoE4 to apoE3 by gene editing worsens the pathology associated with apoE4 in human iPSCderived neurons.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "PTEN is a regulator for the transcriptional activity of SRF",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Smc5/6 engagment halts the activation of SUMO E3 ligase Mms21 by ATP-dependent remolding.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Sildenafil worsens erectile function in men who experience sexual dysfunction as a result of the use of SSRI antidepressants.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Microcin J25 encourages nucleoside triphosphate (NTP) binding.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "LDL cholesterol has a causal role in the development of cardiovascular disease.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "KRT17 modulates the expression of the transcriptional regulator AIRE in diseased epithelia.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "ART has no effect on the infectiveness of HIV-positive people.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "The minor G allele of FOXO3 downregulates pro-inflammatory cytokines.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "PKG-la plays an essential role in expression of spinal long term potentiation in PGK-la knockout mice.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Autologous transplantation of mesenchymal stem cells has better graft function than induction therapy with anti-interleukin-2 receptor antibodies.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "High levels of CRP lead to a higher risk of exacerbations in chronic obstructive pulmonary disease (COPD).",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Normal expression of RUNX1 causes tumorsupressing effects.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Pyridostatin induces double-strand breaks accumulation.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Natriuretic peptides protect against diabetes.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "cSMAC formation represses weak ligand signalling.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Pre-mRNAs associated with spliceosomal components are more stable than unassociated splicing substrates.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "N348I mutations cause resistance to nevirapine.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Depletion of nitric oxide is responsible for vasospasm.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "The peak incidence of fractures occurs during pubertal growth spurt in early adolescents.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "PKG-la does not have a large impact on expression of pain hypersensitivity in PGK-la knockout mice.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Including pharmacists in rounding teams does not alter the incidence of adverse drug events (ADEs).",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Active Ly49Q induces neutrophil polarization.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Post-transcriptional handling of mitochondrial transcripts occurs in mitochondrial RNA granules.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Cost effectiveness evaluations based on cRCT data accurately reflect prices for patients in actual clinical practice.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Varenicline monotherapy is more effective after 26 weeks of treatment compared to combination nicotine replacement therapies with varenicline or bupropion.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Major vault protein (MVP) leads to more aggressive tumors by regulating the sorting of tumor suppressive miR-193a into extracellular vesicles (EVs).",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "MICAL redox enzymes regulate actin dynamics.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Inside the body, falciparum parasites reproduce asexually.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Nonhypertensive people who are 55 years old have a 90% chance of developing hypertension during their lifetime.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "MafA ubiquitination decreases the recruitment of coavtivator P/CAF by MafA.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Omnivores produce more trimethylamine N-oxide from dietary I-carnitine than vegetarians.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Helicobacter pylori-induced aberrant NF-kB-dependent expression of activation-induced cytidine deaminase contributes to the mutagenesis of host DNA.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "76-85% of people with severe mental disorder receive no treatment in low and middle income countries.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Bariatric surgery reduces postmenopausal breast cancer.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Pyridostatin encourages proliferation of homologous recombination - defective cells.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "32% of liver transplantation programs required patients to discontinue methadone treatment in 2001.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Depletion of T-helper 17 (Th17) cells during simian immunodeficiency virus (SIV) infection decreases dissemination of Salmonella Typhimurium from the gut.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Rhythmic expression of Cry1 translates directly into a circadian regulation of cAMP signaling in gluconeogenesis.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Eilat virus (EILV) produced in mosquitos elicits rapid and long-lasting neutralizing antibodies in nonhuman primates.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "YAP/TAZ is required in intestinal regeneration in mouse models of ulcerative colitis.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "RAD52 is involved in break-induced DNA replication (BIR).",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Comparative transcriptome analysis identified new platelet proteins with structural features suggesting a role in platelet function.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Broadly HIV-1 Neutralizing Antibodies (bnAb) 10EB have no affinity for phospholipids.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "PCSK9 inhibitors decrease plasma Lp(a) levels.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Upon viral challenge, influenza-specific memory CD4+ T cells greatly diminish the early production of inflammatory chemokines in the lung.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Lack of FGF21 in mice slows the rate of atherosclerotic plaque formation.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "β-sheet opening occurs during pleurotolysin pore formation.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "The PDPN gene deactivates the C-type lectin receptor (CLEC-2).",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "The C-type lectin receptor (CLEC-2) rearranges the actin cytoskeleton in dendritic cells to promote efficient motility along stromal surfaces.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "The density of cytokine receptor bearing cells affects the distance over which cytokines act.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "A diminished ovarian reserve does not solely indicate infertility in an a priori non-infertile population.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Notch signaling occurs between tumor cells and stromal cells.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "The removal of reactive oxygen species by activated oncogenes contributes to the increased genomic instability of leukaemia cells.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Patients with common epithelial cancers are less likely to have an emergency event as their first hospital admission if they live in resource-deprived areas.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Pioglitazone use is not associated with an increased risk of prostate cancer.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Bariatric surgery increases rates of colorectal cancer.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Kir7.1 modulates channel activity by the G protein-coupled melanocortin-4 receptor (MC4R) in the paraventricular nucleus of the hypothalamus.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "The microtubule-dependent delivery and secretion of matrix metalloproteases (MMPs) is partially responsible for the disassembly of adhesion sites.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Inhibiting focal adhesion formation increases the rate at which cells convert mechanical strain into inflammation and fibrosis.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Cellular differentiation of embryonic stem cells is accompanied by changes in replication timing, transcription and nuclear localization.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "C2 works synergistically with A-769662 to activate dephosphorylated AMPK.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "CD44v6 is not associated with constitutive and reprogrammed cancer stem cells driving cancer metastasis.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Higher plasma levels of I-carnitine, when associated with trimethylamine N-oxide, are positively correlated with cardiovascular events in humans.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Rhythmic expression of Cry1 translates directly into a circadian regulation of cAMP signaling in hepatic glucose metabolism.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Inhibiting focal adhesion formation enables cells to convert mechanical strain into eventual scarring.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Mitochondria play a major role in energy production.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Sepsis related mortality has risen from 2009 to 2014.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "The minor G allele of FOXO3 is related to less severe symptoms of Crohn's Disease.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Retinoic acid receptor-related orphan receptor gamma (RORγ) is a therapeutic target for castration-resistant prostate cancer (CRPC)",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Mice that lack Interferon-γ or its receptor are highly susceptible to experimental autoimmune myocarditis.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Pyridostatin stabilizes the G - quadruplex in the telomeric region.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "The DdrB protein from Deinococcus radiodurans functions as a pentamer.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Antimicrobial agents are less effective due to the pressure of antimicrobial usage.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Reduction of Rpl38 alters the composition of the Hox gene mRNAs translation in mice without lowering overall protein synthesis.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Cyclin A2 destruction is necessary to switch from unstable to stable kt-mt attachments in mitosis.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Human embryonic stem cells give rise to cell types from the outer embryonic germ layer, but not the other two layers.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "Two variants of chromosome 6q21 are associated with radiation therapy-induced second malignancies in pediatric Hodgkin lymphoma patients.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Side effects associated with antidepressants increases risk of stroke.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Pseudogene PTENP1 encodes a transcript that regulates PTEN expression.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Upregulation of dynein in Drosophila neurons increases the number of microtubule plus-ends growing toward the cell body of each neuron.",
+    "answer": "REFUTED"
+  },
+  {
+    "question": "DUSP4 increases apoptosis.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Surgical treatment is not superior to non-surgical in treating adults with displaced fractures of the proximal humerus.",
+    "answer": "SUPPORTED"
+  },
+  {
+    "question": "Integrated care is ineffective at tackling multiple comorbidities.",
+    "answer": "REFUTED"
+  }
+]

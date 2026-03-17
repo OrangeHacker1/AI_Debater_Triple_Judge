@@ -28,7 +28,15 @@ Accuracy Graph:
 
 
 ## Commonsense Q/A Results
-xxx
+
+Accuracy Results:   
+
+-"debate_accuracy": 0.7066666666666667   
+-"direct_qa_accuracy": 0.7266666666666667   
+-"self_consistency_accuracy": 0.66   
+-"debate_samples": 150   
+-"direct_samples": 150   
+-"self_consistency_samples": 150   
 
 # Analysis
 

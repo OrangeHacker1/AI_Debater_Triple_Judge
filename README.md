@@ -7,10 +7,13 @@ For this project, two datasets were used. The answers being either ("SUPPORTED" 
 
 There are 2 ways to run this program.   
   1. VSCode / Local
-  2. Website
+  2. Website  
 **REQUIREMENTS:** In order to run this program, the following packages must be installed:  
   1. Matlib
   2. PyYAML
+  3. fastapi
+  4. uvicorn
+  5. python-dotenv
 
 **Dependencies:**   
 In order to repeat this, you need to download the code files and use the following command to initiate connection to the LLMs: "python main.py --dataset datasets/<NAME_OF_DATASET>.json"   

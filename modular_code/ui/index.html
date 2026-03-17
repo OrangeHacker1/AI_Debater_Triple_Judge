@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LLM Debate System</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:40px;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:20px;
+}
+
+.box{
+border:1px solid gray;
+padding:15px;
+height:300px;
+overflow:auto;
+}
+
+.final{
+margin-top:30px;
+border:2px solid black;
+padding:15px;
+}
+
+textarea{
+width:100%;
+height:80px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>LLM Debate System</h1>
+
+<h2>Configuration</h2>
+
+Temperature <input id="temp" value="0.7">
+Max Tokens <input id="tokens" value="1024">
+Rounds <input id="rounds" value="3">
+Early Stop <input id="early" value="2">
+Self Consistency Samples <input id="samples" value="3">
+
+<button onclick="saveConfig()">Save Config</button>
+
+<h2>API Keys</h2>
+
+Debater Base URL <input id="dbase"><br>
+Debater Model <input id="dmodel"><br>
+Debater Key <input id="dkey"><br>
+
+Judge Base URL <input id="jbase"><br>
+Judge Model <input id="jmodel"><br>
+Judge Key <input id="jkey"><br>
+
+<button onclick="saveEnv()">Save API Keys</button>
+
+<h2>Enter Question</h2>
+
+<textarea id="question"></textarea>
+<br>
+<button onclick="runDebate()">Run Debate</button>
+
+<h2>Results</h2>
+
+<div class="container">
+
+<div class="box">
+<h3>Debate</h3>
+<pre id="debate"></pre>
+</div>
+
+<div class="box">
+<h3>Direct QA</h3>
+<pre id="direct"></pre>
+</div>
+
+<div class="box">
+<h3>Self Consistency</h3>
+<pre id="sc"></pre>
+</div>
+
+</div>
+
+<div class="final">
+
+<h3>Final Answers</h3>
+
+Debate: <span id="f_debate"></span><br>
+Direct QA: <span id="f_direct"></span><br>
+Self Consistency: <span id="f_sc"></span>
+
+</div>
+
+<script>
+
+function clearResults(){
+
+document.getElementById("debate").textContent=""
+document.getElementById("direct").textContent=""
+document.getElementById("sc").textContent=""
+
+document.getElementById("f_debate").textContent=""
+document.getElementById("f_direct").textContent=""
+document.getElementById("f_sc").textContent=""
+
+}
+
+async function saveConfig(){
+
+await fetch("/set_config",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+temperature:parseFloat(temp.value),
+max_tokens:parseInt(tokens.value),
+rounds:parseInt(rounds.value),
+early_stop_rounds:parseInt(early.value),
+samples:parseInt(samples.value)
+})
+})
+
+alert("Config Saved")
+
+}
+
+async function saveEnv(){
+
+await fetch("/set_env",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+debater_base:dbase.value,
+debater_model:dmodel.value,
+debater_key:dkey.value,
+judge_base:jbase.value,
+judge_model:jmodel.value,
+judge_key:jkey.value
+})
+})
+
+alert("Env Saved")
+
+}
+
+async function runDebate(){
+
+clearResults()
+
+let q=document.getElementById("question").value
+
+let res=await fetch("/run_debate",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({question:q})
+})
+
+let data=await res.json()
+
+document.getElementById("debate").textContent=
+JSON.stringify(data.debate.transcript,null,2)
+
+document.getElementById("direct").textContent=
+JSON.stringify(data.direct_qa,null,2)
+
+document.getElementById("sc").textContent=
+JSON.stringify(data.self_consistency,null,2)
+
+document.getElementById("f_debate").textContent=
+data.debate.judge_verdict
+
+document.getElementById("f_direct").textContent=
+data.direct_qa
+
+document.getElementById("f_sc").textContent=
+data.self_consistency
+
+}
+
+</script>
+
+</body>
+</html>

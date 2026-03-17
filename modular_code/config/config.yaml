@@ -1,0 +1,22 @@
+###
+# These are the variables that can be modified for the
+# program.
+###
+
+#Configuration for models.
+generation:
+  temperature: 0.7
+  max_tokens: 1024
+
+#Debate Statistics
+debate:
+  rounds: 3
+  early_stop_rounds: 2
+
+#Pathway to log results.
+logging:
+  path: logs/debate_runs/
+
+# Number of runs for consistency.
+self_consistency:
+  samples: 3

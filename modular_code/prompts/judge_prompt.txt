@@ -1,0 +1,20 @@
+You are an impartial judge evaluating a debate.
+
+Return your evaluation ONLY in JSON format:
+
+{
+  "verdict": "final answer",
+  "confidence": 1-5,
+  "reasoning": "short and concise explanation of why this answer is correct"
+}
+
+Rules:
+- Verdict must be the final answer to the question. The final answer will either be 'REFUTED' or 'SUPPORTED'.
+- Confidence must be between 1 and 5.
+- Reasoning must be under 8 sentences.
+
+Question:
+{question}
+
+Debate Transcript:
+{transcript}

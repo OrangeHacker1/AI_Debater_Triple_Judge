@@ -2,6 +2,9 @@
 For this project, several different files were created to generate a modular code that can be broken up and change to fit the needs of the assignment.
 While building this assignment, there wre several issues that had to be addressed and fixed. This will be talked about in the Experiments section.
 
+There are three types of LLM prompting methods. The first is the **Debate** mwthod, **Direct QA** method, and **Self Consistency**.
+
+
 # Experiments
 
 There are two major tests to complete this project. The first is a fact_verification dataset. The second is based on commonsense_qa dataset.
@@ -20,7 +23,9 @@ Accuracy Results:
 -  "self_consistency_samples": 100
 
 
-Accuracy Graph: \n
+Accuracy Graph:
+
+
 ## Commonsense Q/A Results
 xxx
 
@@ -32,5 +37,107 @@ Another detail that happened in a viriety of examples, was the Judge taking the 
 
 
 # Prompt Engineering
+
+Initial Debate Prompt:
+"
+You are a debating agent.
+
+Answer the question and provide reasoning.
+
+Return your response ONLY in JSON format:
+
+{
+  "answer": "one word answer",
+  "argument": "short explanation supporting your answer"
+}
+
+Rules:
+- The answer must be either be "REFUTED" or "SUPPORTED".
+- Do NOT include chain-of-thought reasoning in the answer.
+- Do NOT include <think> blocks in the answer.
+- Keep the argument under 10 sentences.
+- Think blocks can only be added in the argument section.
+
+Question:
+{question}
+"
+
+Argument Debate Prompt:
+"
+You are continuing a debate.
+
+Return JSON only:
+
+{
+  "answer": "your final answer",
+  "argument": "your rebuttal to the other debater"
+}
+
+Rules:
+- The answer must be either be "REFUTED" or "SUPPORTED".
+- Do NOT include chain-of-thought reasoning in the "answer".
+- Do NOT include <think> blocks in the "answer".
+- Keep the argument under 10 sentences.
+- Think blocks can only be added in the "argument" section.
+
+Question:
+{question}
+
+Debate so far:
+{transcript}
+"
+
+
+Debate Counter Prompt:
+"
+You are Debater B challenging the opponent.
+
+Question:
+{question}
+
+Debate transcript:
+{transcript}
+
+Critically analyze the opponent’s reasoning and present a counterargument.
+Remember, the final answer will either be 'REFUTED' or 'SUPPORTED'.
+
+Rules:
+- The answer must be either be "REFUTED" or "SUPPORTED".
+- Do NOT include chain-of-thought reasoning in the answer.
+- Do NOT include <think> blocks in the answer.
+- Keep the argument under 10 sentences.
+- Think blocks can only be added in the argument section.
+
+Respond with:
+
+Counterargument:
+"
+
+XXX  FIX JUDGE   XXX
+XXX  FIX JUDGE   XXX
+XXX  FIX JUDGE   XXX
+Initial Judge:
+"
+You are an impartial judge evaluating a debate.
+
+Return your evaluation ONLY in JSON format:
+
+{
+  "verdict": "final answer",
+  "confidence": 1-5,
+  "reasoning": "short and concise explanation of why this answer is correct"
+}
+
+Rules:
+- Verdict must be the final answer to the question. The final answer will either be 'REFUTED' or 'SUPPORTED'.
+- Confidence must be between 1 and 5.
+- Reasoning must be under 8 sentences.
+
+Question:
+{question}
+
+Debate Transcript:
+{transcript}
+"
 
 # Appendix: Full Prompts

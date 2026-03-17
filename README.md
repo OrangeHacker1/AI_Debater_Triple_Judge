@@ -19,7 +19,7 @@ There are 2 ways to run this program.
 
 **Dependencies:**   
 In order to repeat this, you need to download the code files and use the following command to initiate connection to the LLMs: "python main.py --dataset datasets/<NAME_OF_DATASET>.json"   
-The following datasets are fact verification and commonsense qa. These datasets were gathered from [SciFact](https://github.com/allenai/scifact?tab=readme-ov-file) and [StrategyQA](https://huggingface.co/datasets/voidful/StrategyQA/resolve/main/strategyqa_train.json) 
+The following datasets are fact verification and commonsense qa. These datasets were gathered from [SciFact](https://github.com/allenai/scifact?tab=readme-ov-file) and [StrategyQA](https://huggingface.co/datasets/voidful/StrategyQA/resolve/main/strategyqa_train.json).     
 NAME_OF_DATASET:
   1. fact_verification  
   2. commonsense_qa  

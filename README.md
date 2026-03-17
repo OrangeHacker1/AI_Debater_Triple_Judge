@@ -10,11 +10,12 @@ There are 2 ways to run this program.
   2. Website  
 
 **REQUIREMENTS:** In order to run this program, the following packages must be installed:   
-  1. Matlib
-  2. PyYAML
-  3. fastapi
-  4. uvicorn
-  5. python-dotenv
+  1. Matlib   
+  2. PyYAML   
+  3. fastapi  
+  4. uvicorn  
+  5. fastapi uvicorn   
+  6. python-dotenv   
 
 **Dependencies:**   
 In order to repeat this, you need to download the code files and use the following command to initiate connection to the LLMs: "python main.py --dataset datasets/<NAME_OF_DATASET>.json"   
@@ -23,10 +24,23 @@ NAME_OF_DATASET:
   1. fact_verification  
   2. commonsense_qa  
 
-Checking Results:    
-The following are commands to run phase 4 (Accuracy).   
-It is possible to check both the "logs\debate_runs" and "logs\debate_runs\<subfolder>".   
+To run the  program locally, you need to downlad the modular code section and store it in the acctive directory.  
+You then need to add all of the other files. The exception includes the datasets. Two datasets were included. These are the datasets I used.    
+
+ 
+Checking Results:     
+The following are commands to run phase 4 (Accuracy).    
+It is possible to check both the "logs\debate_runs" and "logs\debate_runs\<subfolder>".      
 The subfolder can be used within the debate_runs folder to isolate datasets.   
 \# Usage: python log_checker.py   
 \# Usage Subfolder: python log_checker.py --subfolder run_1   
 \# Searches: logs/debate_runs/run_1/    
+
+In order to run the UI website, you need to run the following comand:   
+
+    python main.py --UI   
+
+After running the UI, you need to connect to your local server using the following:   
+
+    http://localhost:8000
+

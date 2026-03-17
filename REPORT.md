@@ -10,15 +10,16 @@ The initial tests of this project ran into certian issues. Debates were rare bet
 
 ## Fact Verification
 
-Accuracy Results: \n
-{
-  "debate_accuracy": 0.65,
-  "direct_qa_accuracy": 0.65,
-  "self_consistency_accuracy": 0.62,
-  "debate_samples": 100,
-  "direct_samples": 100,
-  "self_consistency_samples": 100
-}
+Accuracy Results:
+
+- "debate_accuracy": 0.65
+-  "direct_qa_accuracy": 0.65
+-  "self_consistency_accuracy": 0.62
+-  "debate_samples": 100
+-  "direct_samples": 100
+-  "self_consistency_samples": 100
+
+
 Accuracy Graph: \n
 ## Commonsense Q/A Results
 xxx

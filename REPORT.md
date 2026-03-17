@@ -1,17 +1,69 @@
 # Methodology
 For this project, several different files were created to generate a modular code that can be broken up and change to fit the needs of the assignment.
-While building this assignment, there wre several issues that had to be addressed and fixed. This will be talked about in the Experiments section.
+While building this assignment, there wre several issues that had to be addressed and fixed. This will be talked about in the Experiments section.   
 
-There are three types of LLM prompting methods. The first is the **Debate** mwthod, **Direct QA** method, and **Self Consistency**.
+There are three types of LLM prompting methods. The first is the **Debate** method, **Direct QA** method, and **Self Consistency**.   
 
+ChatGPT was used for Vibe Coding. The reasoning behind this was that I have more experience with it.   
+
+All of the agents are designed to either support or refute a stance. This was a design choice based on all of the ground truth values in the datasets. There were only agree: \(Yes, SUPPORT\) and disagree: \
+(No, REFUTE\) stances. While I could have made this more dinamic, there were serious bugs occuring with the answers. After a couple of rounds of debugging, I decided to leave this, as a debate typically only has 2 sides. Adding additional sides, like math equations, would potentially lead to errors or jumping to other issues.   
+
+The project is broken into 4 phases. The first phase involves initialization. It initializes and loads all enviornment variables.
+The second phase involves querying the LLM models to conduct debates.
+The third phase is only for the debate method. This phase has a judge go over the debate to determine what the best stance is.
+The fourth phase involves documenting and saving all three of the prompting methods' answers and relivent data. This can be run with the following code:   
+
+      python main.py --dataset <dataset>
+      python main.py --dataset datasets/<dataset>
+      # This is used for starting the UI.
+      python main.py --ui
+
+**NOTE:** The accuracy given at the end of this run is not accurate. I made a new function after bugging it while vibe coding and pushing the changes. I created a call that would let me analyze the results whenever I wanted as opposed to only during the call. If this note is still here, the code still outputs the outdated results at the bottom of the run.   
+
+After completing the initial 4 phases, a second program is used to check for accuracy. The code to run is as follows:   
+
+      python log_checker.py
+      python log_checker.py --subfolder <folder_name>
+
+These methods are used to run datasets in VSCode manually.  
+As shown above, it is possible to run a User Interface. This will locally host the models and allow for modifying variables. By typing a Yes or No question in the text box, it is possible to get a reply.   
+The final results are shown at the bottom of the UI.
+
+Configuration and Hyperparameters:   
+The parameters I used are as follows:   
+
+      generation:
+        temperature: 0.7
+        max_tokens: 1024
+      
+      #Debate Statistics
+      debate:
+        rounds: 3
+        early_stop_rounds: 2
+      
+      #Pathway to log results.
+      logging:
+        path: logs/debate_runs/
+      
+      # Number of runs for consistency.
+      self_consistency:
+        samples: 3
+
+The 1024 tokens was to allow larger debates. Another test was going to be carried out at 100 to test whether this would still produce good results, or if there would be issues.
+Temperature was arbitrary. I didn't want is to be too restricted or free. 0.7 seemed like a decent middle ground at the time. Increasing it may have lead to better results.
 
 # Experiments
 
 There are two major tests to complete this project. The first is a fact_verification dataset. The second is based on commonsense_qa dataset.
 
-The initial tests of this project ran into certian issues. Debates were rare between the agents since they almost always had the same stance. In order to complete the assignment, this will be implimented as required, but I was working on another variation of the assignment that would force the second agent to take the opisite stance if there was a consence. This would force the agents to better debate their stances. Another idea involved using different models to help create friction.
+The initial tests of this project ran into certian issues. Debates were rare between the agents since they almost always had the same stance. In order to complete the assignment, this will be implimented as required, but I was working on another variation of the assignment that would force the second agent to take the opisite stance if there was a consence. This would force the agents to better debate their stances. Another idea involved using different models to help create friction.   
 
-## Fact Verification
+The initial testing was done using generalized prompts at the beginning. However, this lead to issues with consensus. All of the debates had an initial concensus, and thus would immediately jump to the judging portion.
+
+The second testing results were done using better prompts that try to divide the debating agents. I wanted to make them different to create different answers.   
+
+## Fact Verification 1   
 
 Accuracy Results:
 
@@ -27,7 +79,7 @@ Accuracy Graph:
 ![Fact Verification Graph 1](fact_verification_accuracy_plot_1.png "Fact Verification Graph 1")
 
 
-## Commonsense Q/A Results
+## Commonsense Q/A Results 1    
 
 Accuracy Results:   
 
@@ -64,7 +116,15 @@ This was the final initial prompting for debator A.
 Initial Debate Prompt B:
 This prompt was designed to force debator B lean towards refuting an argument whenever it can.    
 This was the final initial prompting for debator A.   
-   
+
+Direct QA Prompt:   
+This is a baseline prompt designed to serve as a base metric for the debate model.   
+This is used in the direct_qa.py file.   
+
+Self Consistency Prompt:   
+This is a baseline prompt designed to serve as a base metric for the debate model.   
+This is used in the self_consistency.py file.   
+
 Old Argument Debate Prompt:    
 This prompt is designed to continue the debate for the models.
 This is used for model A for the debater.
@@ -170,6 +230,34 @@ Initial Debate Prompt B: txt File
       
       Question:
       {question}
+      "
+
+Direct QA Prompt: txt  File
+
+      "
+      Answer the following question in ONE word for the final answer.
+      Provide reasoning separately under 'Reasoning:'.
+      
+      Question:
+      {question}
+      
+      Format:
+      Answer: <one word answer> "SUPPORTED" or "REFUTED"
+      Reasoning: <explanation in 1-3 sentences>
+      "
+
+Self Consistency Prompt: txt File   
+
+      "
+      Answer the question using step-by-step reasoning.
+      The final answer will either be 'REFUTED' or 'SUPPORTED'.
+      
+      Question:
+      {question}
+      
+      Format:
+      Answer:
+      Reasoning:
       "
 
 Initial Argument Debate Prompt: txt File     

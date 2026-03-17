@@ -39,30 +39,13 @@ Another detail that happened in a viriety of examples, was the Judge taking the 
 
 # Prompt Engineering
 
-Initial Debate Prompt:
-"
-You are a debating agent.
+Overall Prompt Answers:
+- The prompts will always answer in "SUPPORTED" or "REFUTED". This is done since all of the questions can fall into the Agree or Disagree subsets, e.g. \(Supported, Yes\) or \(Refuted, No\)  
 
-Answer the question and provide reasoning.
-
-Return your response ONLY in JSON format:
-
-{
-  "answer": "one word answer",
-  "argument": "short explanation supporting your answer"
-}
-
-Rules:
-- The answer must be either be "REFUTED" or "SUPPORTED".
-- Do NOT include chain-of-thought reasoning in the answer.
-- Do NOT include <think> blocks in the answer.
-- Keep the argument under 10 sentences.
-- Think blocks can only be added in the argument section.
-
-Question:
-{question}
-"
-
+Initial Debate Prompt:   
+The initial debate prompt is designed to ask the models to get their individual answers according to Phase 1 \- Initialization 2. Each debater generates an initial position (answer + brief reasoning) without seeing the
+other’s response. This lead to a lot of similar results and thus there is no debate.   
+   
 Argument Debate Prompt:
 "
 You are continuing a debate.
@@ -114,31 +97,55 @@ Respond with:
 Counterargument:
 "
 
-XXX  FIX JUDGE   XXX
-XXX  FIX JUDGE   XXX
-XXX  FIX JUDGE   XXX
-Initial Judge:
-"
-You are an impartial judge evaluating a debate.
+XXX  FIX JUDGE   XXX    
+XXX  FIX JUDGE   XXX    
+XXX  FIX JUDGE   XXX     
+Initial Judge:  
+"   
+You are an impartial judge evaluating a debate.   
+   
+Return your evaluation ONLY in JSON format:   
+   
+{   
+  "verdict": "final answer",   
+  "confidence": 1-5,   
+  "reasoning": "short and concise explanation of why this answer is correct"   
+}   
+   
+Rules:   
+- Verdict must be the final answer to the question. The final answer will either be   'REFUTED' or 'SUPPORTED'.   
+- Confidence must be between 1 and 5.   
+- Reasoning must be under 8 sentences.   
+   
+Question:  
+{question}   
+   
+Debate Transcript:   
+{transcript}   
+"  
+   
+# Appendix: Full Prompts
 
-Return your evaluation ONLY in JSON format:
+Initial Debate Prompt:   
+"
+You are a debating agent.
+
+Answer the question and provide reasoning.
+
+Return your response ONLY in JSON format:
 
 {
-  "verdict": "final answer",
-  "confidence": 1-5,
-  "reasoning": "short and concise explanation of why this answer is correct"
+  "answer": "one word answer",
+  "argument": "short explanation supporting your answer"
 }
 
 Rules:
-- Verdict must be the final answer to the question. The final answer will either be 'REFUTED' or 'SUPPORTED'.
-- Confidence must be between 1 and 5.
-- Reasoning must be under 8 sentences.
+- The answer must be either be "REFUTED" or "SUPPORTED".
+- Do NOT include chain-of-thought reasoning in the answer.
+- Do NOT include <think> blocks in the answer.
+- Keep the argument under 10 sentences.
+- Think blocks can only be added in the argument section.
 
 Question:
 {question}
-
-Debate Transcript:
-{transcript}
 "
-
-# Appendix: Full Prompts

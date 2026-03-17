@@ -46,89 +46,27 @@ Initial Debate Prompt:
 The initial debate prompt is designed to ask the models to get their individual answers according to Phase 1 \- Initialization 2. Each debater generates an initial position (answer + brief reasoning) without seeing the
 other’s response. This lead to a lot of similar results and thus there is no debate.   
    
-Argument Debate Prompt:
-"
-You are continuing a debate.
-
-Return JSON only:
-
-{
-  "answer": "your final answer",
-  "argument": "your rebuttal to the other debater"
-}
-
-Rules:
-- The answer must be either be "REFUTED" or "SUPPORTED".
-- Do NOT include chain-of-thought reasoning in the "answer".
-- Do NOT include <think> blocks in the "answer".
-- Keep the argument under 10 sentences.
-- Think blocks can only be added in the "argument" section.
-
-Question:
-{question}
-
-Debate so far:
-{transcript}
-"
+Argument Debate Prompt:    
+This prompt is designed to continue the debate for the models.
+This is used for model A for the debater.
 
 
 Debate Counter Prompt:
-"
-You are Debater B challenging the opponent.
-
-Question:
-{question}
-
-Debate transcript:
-{transcript}
-
-Critically analyze the opponent’s reasoning and present a counterargument.
-Remember, the final answer will either be 'REFUTED' or 'SUPPORTED'.
-
-Rules:
-- The answer must be either be "REFUTED" or "SUPPORTED".
-- Do NOT include chain-of-thought reasoning in the answer.
-- Do NOT include <think> blocks in the answer.
-- Keep the argument under 10 sentences.
-- Think blocks can only be added in the argument section.
-
-Respond with:
-
-Counterargument:
-"
+This is the secind debator model. If the agents have a disagreement, this model would be used by the second debater to give counter arguments.
 
 XXX  FIX JUDGE   XXX    
 XXX  FIX JUDGE   XXX    
 XXX  FIX JUDGE   XXX     
 Initial Judge:  
-"   
-You are an impartial judge evaluating a debate.   
-   
-Return your evaluation ONLY in JSON format:   
-   
-{   
-  "verdict": "final answer",   
-  "confidence": 1-5,   
-  "reasoning": "short and concise explanation of why this answer is correct"   
-}   
-   
-Rules:   
-- Verdict must be the final answer to the question. The final answer will either be   'REFUTED' or 'SUPPORTED'.   
-- Confidence must be between 1 and 5.   
-- Reasoning must be under 8 sentences.   
-   
-Question:  
-{question}   
-   
-Debate Transcript:   
-{transcript}   
-"  
-   
-# Appendix: Full Prompts
+This was the initial Judge I used. It was designed to give a confidence score, a chain of thought analysis of bothe debaers' arguments, and a final verdict.
+Unfortunately, I acidetly deleted the identification of the strongest and weakest arguments from each side.   
+     
+# Appendix: Full Prompts   
 
 Initial Debate Prompt:   
-   "
-      You are a debating agent.
+      
+      "
+       You are a debating agent.
       
       Answer the question and provide reasoning.
       
@@ -148,4 +86,82 @@ Initial Debate Prompt:
       
       Question:
       {question}
-   "
+      "
+
+
+Argument Debate Prompt:   
+
+      "
+      You are continuing a debate.
+      
+      Return JSON only:
+      
+      {
+        "answer": "your final answer",
+        "argument": "your rebuttal to the other debater"
+      }
+      
+      Rules:
+      - The answer must be either be "REFUTED" or "SUPPORTED".
+      - Do NOT include chain-of-thought reasoning in the "answer".
+      - Do NOT include <think> blocks in the "answer".
+      - Keep the argument under 10 sentences.
+      - Think blocks can only be added in the "argument" section.
+      
+      Question:
+      {question}
+      
+      Debate so far:
+      {transcript}
+      "
+
+Debate Counter Prompt:   
+     
+      "
+      You are Debater B challenging the opponent.
+      
+      Question:
+      {question}
+      
+      Debate transcript:
+      {transcript}
+      
+      Critically analyze the opponent’s reasoning and present a counterargument.
+      Remember, the final answer will either be 'REFUTED' or 'SUPPORTED'.
+      
+      Rules:
+      - The answer must be either be "REFUTED" or "SUPPORTED".
+      - Do NOT include chain-of-thought reasoning in the answer.
+      - Do NOT include <think> blocks in the answer.
+      - Keep the argument under 10 sentences.
+      - Think blocks can only be added in the argument section.
+      
+      Respond with:
+      
+      Counterargument:
+      "
+
+Initial Judge:  
+
+      "   
+      You are an impartial judge evaluating a debate.   
+         
+      Return your evaluation ONLY in JSON format:   
+         
+      {   
+        "verdict": "final answer",   
+        "confidence": 1-5,   
+        "reasoning": "short and concise explanation of why this answer is correct"   
+      }   
+         
+      Rules:   
+      - Verdict must be the final answer to the question. The final answer will either be   'REFUTED' or 'SUPPORTED'.   
+      - Confidence must be between 1 and 5.   
+      - Reasoning must be under 8 sentences.   
+         
+      Question:  
+      {question}   
+         
+      Debate Transcript:   
+      {transcript}   
+      "  

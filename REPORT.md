@@ -53,6 +53,10 @@ The parameters I used are as follows:
 The 1024 tokens was to allow larger debates. Another test was going to be carried out at 100 to test whether this would still produce good results, or if there would be issues.
 Temperature was arbitrary. I didn't want is to be too restricted or free. 0.7 seemed like a decent middle ground at the time. Increasing it may have lead to better results.
 
+While conducting experiments, the results were counterinntuitive to what I wanted. Rather than leaving the model in an unfinished state, I decided to go through and provide updates and try find out what ws causing the issue.   
+The following are a brief summary of what each itteration improves/changes to get new results.   
+1. The base model. Generic prompts were used and both models had the same starting point.
+
 # Experiments
 
 There are two major tests to complete this project. The first is a fact_verification dataset. The second is based on commonsense_qa dataset.
@@ -62,6 +66,10 @@ The initial tests of this project ran into certian issues. Debates were rare bet
 The initial testing was done using generalized prompts at the beginning. However, this lead to issues with consensus. All of the debates had an initial concensus, and thus would immediately jump to the judging portion.
 
 The second testing results were done using better prompts that try to divide the debating agents. I wanted to make them different to create different answers.   
+The hope was to get the agents to debate, but there was a consensus for all of the agents once more. This lead to a question of whether there was a different problem.  
+Despite telling the models to lean one way or another, they were still having issues with disagreeing.
+
+The third method to improve the model was to use the same model as the judge. The judge is a more sefisticated 
 
 ## Fact Verification 1   
 
@@ -93,12 +101,89 @@ Accuracy Results:
 Accuracy Graph:   
 ![Commonsense QA Graph 1](commonsense_qa_accuracy_plot.png "Commonsense QA Graph 1")
 
+## Fact Verification 2   
+
+Accuracy Results:
+
+- "debate_accuracy": 0.65,
+- "direct_qa_accuracy": 0.77,
+- "self_consistency_accuracy": 0.6,
+- "debate_samples": 100,
+- "direct_samples": 100,
+- "self_consistency_samples": 100,
+- "no_initial_consensus": 0
+
+
+
+Accuracy Graph:
+![Fact Verification Graph 2](fact_verification_2_accuracy_plot.png "Fact Verification Graph 2")
+
+
+## Commonsense Q/A Results 2    
+
+Accuracy Results: log_checker2.py   
+
+- "debate_accuracy": 0.62,
+- "direct_qa_accuracy": 0.6866666666666666,
+- "self_consistency_accuracy": 0.6666666666666666,
+- "debate_samples": 150,
+- "direct_samples": 150,
+- "self_consistency_samples": 150,
+- "no_initial_consensus": 0
+
+
+Accuracy Graph:   
+![Commonsense QA Graph 2](commonsense_qa_2_accuracy_plot.png "Commonsense QA Graph 2")
+
+
 # Analysis
 
 Looking at the Fact Varification section, it was found that there was a 65% accuracy with the debate models. This was due to issues with conflict.
 Rather than generating different results, both models were roughly the same.
-Another detail that happened in a viriety of examples, was the Judge taking the opisite stance of the debating agents. Despite there being a consensus, the judge would ignore this, citing different evidence that would disprove their case and would lead it to select the opisite stance.
+Another detail that happened in a viriety of examples, was the Judge taking the opisite stance of the debating agents. Despite there being a consensus, the judge would ignore this, citing different evidence that would disprove their case and would lead it to select the opisite stance.  
 
+This was a concerning developemnt, however, this lead to a new proposal.
+I decided to conduct numerious tests to see if I could get the model to work. In depth analysis will be used occasionally to move towards an improved model.  
+
+The following are brief summaries of what I found while looking at the results for each itteration.  
+1. The initial program would never have any debates. Both models would always agree with one another. The Judge also had an issue. It was incomplete and did not properly identify the strengths and weaknesses of each stance.  
+2. The second itteration was designed to divide the models by telling them to lean one way or another. Debater A was supposed to SUPPORT whenever it could, while debater B was supposed to REFUTE. However, both models seemed to reach the same results with slight differences. In the in depth section, the Judge was observed to have explored the data in depth and sometimes took the opisite stance of both models. The models themselves seemed to present evidence that contridicted their own stance. This questions whether the debater LLMs are sofisticated enough to get the propper stance. Therefore, the next itteration should try using more advanced LLMs. If this does not help, then either the prompt needs to be changed again to better highlight how to properly debate. The Judge should identify the strong and weakpoints regardless of what the agent says it wants. Semantics and Meanings are more important than intent.    
+3. 
+
+In Depth Analyis:
+1.
+
+Example: 
+
+            xxx
+            
+2.
+
+Example: Commonsense QA: debate_2812260528050749682.json
+
+            
+            File: debate_2812260528050749682.json
+            Question: Would Michael Phelps be good at pearl hunting?
+            Truth: SUPPORTED
+            Prediction: {
+              "VERDICT": "REFUTED",
+              "CONFIDENCE": 5,
+              "IDENTIFICATION": {
+                "AGENT A STRONGEST ARGUMENT": "MICHAEL PHELPS' LACK OF EXPERIENCE AND TRAINING IN PEARL HUNTING, DESPITE HIS SWIMMING BACKGROUND, MAKES IT UNLIKELY HE WOULD BE GOOD AT IT.", 
+                "AGENT A WEAKEST ARGUMENT": "THE ASSUMPTION THAT PEARL HUNTING REQUIRES SIMILAR SKILLS TO COMPETITIVE SWIMMING.",
+                "AGENT B STRONGEST ARGUMENT": "MICHAEL PHELPS' PHYSICAL ENDURANCE AND SWIMMING SKILLS COULD POTENTIALLY TRANSLATE TO PROFICIENCY IN PEARL HUNTING.",
+                "AGENT B WEAKEST ARGUMENT": "THE LACK OF CONCRETE EVIDENCE TO REFUTE THE IDEA THAT PHELPS WOULD BE GOOD AT PEARL HUNTING.",
+              },
+              "REASONING": "AFTER EVALUATING BOTH DEBATERS' ARGUMENTS, I CONCLUDE THAT AGENT A'S REASONING IS MORE CONVINCING. WHILE AGENT B ATTEMPTS TO ARGUE THAT PHELPS' SKILLS COULD TRANSLATE TO PEARL HUNTING, AGENT A PROVIDES A MORE NUANCED ANALYSIS OF THE DIFFERENCES BETWEEN COMPETITIVE SWIMMING AND PEARL HUNTING, HIGHLIGHTING THE LACK OF EVIDENCE SUPPORTING PHELPS' SUITABILITY FOR THE TASK. AGENT A'S ARGUMENT IS MORE GROUNDED IN THE FACTS AND MORE EFFECTIVELY ADDRESSES THE POTENTIAL COUNTERARGUMENTS. THEREFORE, I RULE IN FAVOR OF AGENT A'S VERDICT OF 'REFUTED'."
+            }
+Results: According to the analysis provided using logger2.py, it can be assumed that the Judge assumes that Agent A is REFUTING the stance. This sugjests that either the Debater agent is unable to identify its own stance, or that the judge model has issues with determining the Debater's stance.  
+For now, a more advanced LLM will be used for the debaters. I came to this conclusion since the reasoning for Debater A does seem to be aimed more at disproving than aproving. This might be due to giving an answer before the reasoning in the json file. If the error continues and there is a logic mismatch, it means that the order of the json file does determine how the LLM answers. For now, only one variable will be tested to find the cause of the issues.   
+
+3.
+
+Example:
+
+            xxx
 
 # Prompt Engineering
 

@@ -127,25 +127,25 @@ Debate Transcript:
 # Appendix: Full Prompts
 
 Initial Debate Prompt:   
-"
-You are a debating agent.
-
-Answer the question and provide reasoning.
-
-Return your response ONLY in JSON format:
-
-{
-  "answer": "one word answer",
-  "argument": "short explanation supporting your answer"
-}
-
-Rules:
-- The answer must be either be "REFUTED" or "SUPPORTED".
-- Do NOT include chain-of-thought reasoning in the answer.
-- Do NOT include <think> blocks in the answer.
-- Keep the argument under 10 sentences.
-- Think blocks can only be added in the argument section.
-
-Question:
-{question}
-"
+   "
+      You are a debating agent.
+      
+      Answer the question and provide reasoning.
+      
+      Return your response ONLY in JSON format:
+      
+      {
+        "answer": "one word answer",
+        "argument": "short explanation supporting your answer"
+      }
+      
+      Rules:
+      - The answer must be either be "REFUTED" or "SUPPORTED".
+      - Do NOT include chain-of-thought reasoning in the answer.
+      - Do NOT include <think> blocks in the answer.
+      - Keep the argument under 10 sentences.
+      - Think blocks can only be added in the argument section.
+      
+      Question:
+      {question}
+   "

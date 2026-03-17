@@ -23,6 +23,6 @@ Checking Results:
 The following are commands to run phase 4 (Accuracy).
 It is possible to check both the "logs\debate_runs" and "logs\debate_runs\<subfolder>".
 The subfolder can be used within the debate_runs folder to isolate datasets.
-# Usage: python log_checker.py
-# Usage Subfolder: python log_checker.py --subfolder run_1
-# Searches: logs/debate_runs/run_1/
+\# Usage: python log_checker.py
+\# Usage Subfolder: python log_checker.py --subfolder run_1
+\# Searches: logs/debate_runs/run_1/

@@ -24,6 +24,7 @@ Accuracy Results:
 
 
 Accuracy Graph:
+![Fact Verification Graph 1](fact_verification_accuracy_plot_1.png "Fact Verification Graph 1")
 
 
 ## Commonsense Q/A Results

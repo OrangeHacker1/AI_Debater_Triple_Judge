@@ -1,9 +1,9 @@
-# Methodology: 1
+# Methodology
 
-# Experiments: 2
+# Experiments
 
-# Analysis: 3
+# Analysis
 
-# Prompt Engineering: 4
+# Prompt Engineering
 
 # Appendix: Full Prompts

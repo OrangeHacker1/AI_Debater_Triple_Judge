@@ -39,7 +39,7 @@ Accuracy Results:
 -"self_consistency_samples": 150   
 
 Accuracy Graph:   
-![Commonsense QA Graph 1](commonsense_qa_accuracy_plot_1.png "Commonsense QA Graph 1")
+![Commonsense QA Graph 1](commonsense_qa_accuracy_plot.png "Commonsense QA Graph 1")
 
 # Analysis
 

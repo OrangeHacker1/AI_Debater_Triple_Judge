@@ -142,31 +142,17 @@ Accuracy Graph:
 
 Accuracy Results:
 
-- "debate_accuracy": 0.65,
-- "direct_qa_accuracy": 0.77,
-- "self_consistency_accuracy": 0.6,
-- "debate_samples": 100,
-- "direct_samples": 100,
-- "self_consistency_samples": 100,
-- "no_initial_consensus": 0
-
-
-
-Accuracy Graph:
-![Fact Verification Graph 3](fact_verification_3_accuracy_plot.png "Fact Verification Graph 3")
-
+This was not run. It would have been a waste since obvious issues were found that already showcased the issue.
 
 ## Commonsense Q/A Results 3    
 
-Accuracy Results: log_checker2.py   
-
-- "debate_accuracy": 0.62,
-- "direct_qa_accuracy": 0.6866666666666666,
-- "self_consistency_accuracy": 0.6666666666666666,
+- "debate_accuracy": 0.0,  
+- "direct_qa_accuracy": 0.04,
+- "self_consistency_accuracy": 0.5866666666666667,
 - "debate_samples": 150,
 - "direct_samples": 150,
-- "self_consistency_samples": 150,
-- "no_initial_consensus": 0
+- "self_consistency_samples": 150
+
 
 
 Accuracy Graph:   
@@ -221,15 +207,15 @@ I decided to conduct numerious tests to see if I could get the model to work. In
 The following are brief summaries of what I found while looking at the results for each itteration.  
 1. The initial program would never have any debates. Both models would always agree with one another. The Judge also had an issue. It was incomplete and did not properly identify the strengths and weaknesses of each stance.  
 2. The second itteration was designed to divide the models by telling them to lean one way or another. Debater A was supposed to SUPPORT whenever it could, while debater B was supposed to REFUTE. However, both models seemed to reach the same results with slight differences. In the in depth section, the Judge was observed to have explored the data in depth and sometimes took the opisite stance of both models. The models themselves seemed to present evidence that contridicted their own stance. This questions whether the debater LLMs are sofisticated enough to get the propper stance. Therefore, the next itteration should try using more advanced LLMs. If this does not help, then either the prompt needs to be changed again to better highlight how to properly debate. The Judge should identify the strong and weakpoints regardless of what the agent says it wants. Semantics and Meanings are more important than intent.    
-3. 
+3. The third itteration proved that there were significant issues with how the code was set up for different LLM agents. The code couldn't get the agents to give consistent responses.  The judge was out of format, so it resulted in a failure to give the answer in a way the validation code would work. The baseline also had similar issuue with the direct_qa json files using the prediction category for thinking. This lead to the accuracy taking a massive hit as shown above.    
 
 In Depth Analyis:
 1. NOT NEEDED
 
 Example: 
 
-            xxx
-            
+
+
 2.
 
 Example: Commonsense QA: debate_2812260528050749682.json
@@ -254,10 +240,67 @@ For now, a more advanced LLM will be used for the debaters. I came to this concl
 
 3.
 
-Example:
-
-            xxx
+Example:     
             
+            File: debate_2284596959765912730.json
+            Question: Is number of stars in Milky Way at least ten times earth's population?
+            Truth: SUPPORTED
+            Prediction: <THINK>
+            OKAY, LET'S SEE. THE QUESTION IS WHETHER THE NUMBER OF STARS IN THE MILKY WAY IS AT LEAST TEN TIMES EARTH'S POPULATION.
+            
+            AGENT A SAYS IT'S SUPPORTED. THEY MENTION NASA ESTIMATES OF 200-400 BILLION STARS. EARTH'S POPULATION IS ABOUT 7.9 BILLION. THEY CALCULATE THAT EVEN THE LOWER END (200 BILLION) IS WAY MORE THAN TEN TIMES (SINCE 7.9 BILLION TIMES 10 IS 79 BILLION). SO 200 BILLION IS OVER 25 TIMES. THEREFORE, THEY SUPPORT THE CLAIM.       
+            
+            AGENT B ALSO SAYS IT'S SUPPORTED BUT THEIR ARGUMENT SEEMS CONFLICTING. WAIT, NO. WAIT, LOOKING AGAIN. WAIT, AGENT B'S ANSWER IS "REFUTED" BUT THEIR ARGUMENT SAYS THE NUMBER IS MORE THAN 25 TIMES, SO THE STATEMENT IS INCORRECT. WAIT, THAT'S CONFUSING. WAIT, THE ORIGINAL QUESTION IS ASKING IF THE NUMBER OF STARS IS AT LEAST TEN TIMES EARTH'S POPULATION. IF THE ACTUAL NUMBER IS 200-400 BILLION, WHICH IS WAY MORE THAN 10 TIMES (WHICH WOULD BE 79 BILLION), THEN THE STATEMENT IS CORRECT. BUT AGENT B'S ANSWER IS "REFUTED", WHICH WOULD MEAN THEY THINK THE STATEMENT IS FALSE. BUT THEIR ARGUMENT SAYS THAT EVEN THE LOWER ESTIMATE (200 BILLION) IS 25 TIMES, SO THE STATEMENT IS INCORRECT. WAIT, THAT'S CONTRADICTORY. WAIT, MAYBE THERE'S A MISTAKE HERE. BECAUSE IF THE STATEMENT IS "AT LEAST TEN TIMES", AND THE ACTUAL NUMBER IS 200 BILLION, WHICH IS WAY MORE THAN TEN TIMES, THEN THE STATEMENT IS TRUE. SO AGENT B IS SAYING THE STATEMENT IS INCORRECT, BUT THEIR ARGUMENT SEEMS TO SUPPORT THAT IT'S TRUE. THAT'S A CONTRADICTION. WAIT, MAYBE THERE'S A TYPO IN THE JSON. LET ME CHECK AGAIN.
+            
+            LOOKING AT AGENT B'S ARGUMENT: THEY STATE THAT EVEN WITH THE LOWER ESTIMATE (200 BILLION), IT'S MORE THAN 25 TIMES THE POPULATION. SO THE STATEMENT "AT LEAST TEN TIMES" WOULD BE CORRECT. BUT AGENT B'S ANSWER IS "REFUTED", MEANING THEY THINK THE STATEMENT IS FALSE. THAT'S A PROBLEM. UNLESS THERE'S A MISUNDERSTANDING. MAYBE THEY'RE ARGUING THAT THE STATEMENT IS INCORRECT BECAUSE IT'S NOT JUST TEN TIMES BUT MORE. WAIT, NO. THE QUESTION IS WHETHER IT'S AT LEAST TEN TIMES. IF IT'S MORE THAN TEN TIMES, THEN THE STATEMENT IS TRUE. SO AGENT B'S ARGUMENT ACTUALLY SUPPORTS THE STATEMENT, BUT THEIR ANSWER IS "REFUTED", WHICH IS WRONG. THEREFORE, AGENT B'S ANSWER IS INCORRECT, AND AGENT A'S ANSWER IS CORRECT. BUT THE USER WANTS TO EVALUATE BASED ON THE DEBATERS' ARGUMENTS.
+            
+            WAIT, BUT THE USER SAYS TO RETURN THE VERDICT BASED ON THE DEBATERS. SO AGENT A'S ARGUMENT IS CORRECT, AND AGENT B'S ARGUMENT IS CONFLICTING. HOWEVER, AGENT B'S ANSWER IS "REFUTED" BUT THEIR ARGUMENT SUPPORTS THE STATEMENT. THEREFORE, AGENT B'S ANSWER IS WRONG. SO THE CORRECT VERDICT IS "SUPPORTED", AND AGENT A'S ARGUMENT IS STRONG, WHILE AGENT B'S ANSWER IS CONFLICTING.
+            
+            BUT THE USER'S INSTRUCTIONS SAY TO TAKE BOTH SIDES INTO ACCOUNT. WAIT, THE PROBLEM SAYS "YOU SHOULD JUDGE BASED ON THE DEBATERS." SO THE DEBATE IS BETWEEN AGENT A AND AGENT B. AGENT A SAYS THE ANSWER IS SUPPORTED, AGENT B SAYS IT'S REFUTED. BUT AGENT B'S ARGUMENT ACTUALLY SUPPORTS THE STATEMENT. SO AGENT B'S ANSWER IS WRONG. THEREFORE, THE CORRECT VERDICT IS "SUPPORTED" WITH HIGH CONFIDENCE. THE STRONGEST ARGUMENT IS AGENT A'S, AND THE WEAKEST IS AGENT B'S CONFLICTING ANSWER. SO THE VERDICT IS "SUPPORTED", CONFIDENCE 5, IDENTIFICATION OF STRONGEST AND WEAKEST ARGUMENTS FROM EACH SIDE. WAIT, BUT AGENT B'S ARGUMENT IS ACTUALLY SUPPORTING THE STATEMENT, BUT THEIR ANSWER IS REFUTED. THAT'S A CONTRADICTION. SO AGENT B'S ANSWER IS WRONG. SO THE VERDICT SHOULD BE SUPPORTED, AND CONFIDENCE HIGH.       
+            </THINK>
+            
+            {
+              "VERDICT": "SUPPORTED",
+              "CONFIDENCE": 5,
+              "IDENTIFICATION": {
+                "STRONGEST": {
+                  "SIDE": "A",
+                  "ARGUMENT": "NASA'S ESTIMATE OF 200-400 BILLION STARS VS. EARTH'S 7.9 BILLION POPULATION CLEARLY DEMONSTRATES THE NUMBER OF STARS IS OVER 25 TIMES EARTH'S POPULATION, SATISFYING THE 'AT LEAST TEN TIMES' CRITERION."
+                },
+                "WEAKEST": {
+                  "SIDE": "B",
+                  "ARGUMENT": "AGENT B INCORRECTLY LABELS THE CLAIM AS 'REFUTED' DESPITE THEIR OWN DATA SHOWING THE STAR COUNT IS OVER 25 TIMES EARTH'S POPULATION, CONTRADICTING THEIR STATED POSITION."
+                }
+              },
+              "REASONING": "AGENT A'S ARGUMENT DIRECTLY SUPPORTS THE CLAIM WITH VERIFIABLE DATA, WHILE AGENT B'S ANSWER CONFLICTS WITH THEIR OWN EVIDENCE. THE CORE DATA (200-400 BILLION STARS VS. 7.9 BILLION PEOPLE) UNAMBIGUOUSLY PROVES
+
+Close Look:
+
+            {
+              "question": "Is number of stars in Milky Way at least ten times earth's population?",
+              "ground_truth": "Yes",
+              "consensus": true,
+              "transcript": [
+                {
+                  "agent": "A",
+                  "type": "initial",
+                  "answer": "SUPPORTED",
+                  "argument": "{\n  \"answer\": \"SUPPORTED\",\n  \"argument\": \"According to NASA, the Milky Way is estimated to have 200-400 billion stars. The current world population is approximately 7.9 billion. If we consider the upper limit of 400 billion stars, it's reasonable to say that the number of stars in the Milky Way is at least ten times the Earth's population. In fact, it's more than 50 times. Therefore, the claim is supported by the available data.\"\n}"
+                },
+                {
+                  "agent": "B",
+                  "type": "initial",
+                  "answer": "SUPPORTED",
+                  "argument": "{\n  \"answer\": \"REFUTED\",\n  \"argument\": \"The number of stars in the Milky Way is estimated to be around 200-400 billion. Earth's population is approximately 7.9 billion. Even if we assume the lower estimate of stars, 200 billion, it is still more than 25 times the Earth's population. Therefore, the statement is incorrect.\"\n}"
+                }
+              ],
+              "judge_verdict": "<think>\nOkay, let's see. The question is whether the number of stars in the Milky Way is at least ten times Earth's population.\n\nAgent A says it's supported. They mention NASA estimates of 200-400 billion stars. Earth's population is about 7.9 billion. They calculate that even the lower end (200 billion) is way more than ten times (since 7.9 billion times 10 is 79 billion). So 200 billion is over 25 times. Therefore, they support the claim.\n\nAgent B also says it's supported but their argument seems conflicting. Wait, no. Wait, looking again. Wait, Agent B's answer is \"REFUTED\" but their argument says the number is more than 25 times, so the statement is incorrect. Wait, that's confusing. Wait, the original question is asking if the number of stars is at least ten times Earth's population. If the actual number is 200-400 billion, which is way more than 10 times (which would be 79 billion), then the statement is correct. But Agent B's answer is \"REFUTED\", which would mean they think the statement is false. But their argument says that even the lower estimate (200 billion) is 25 times, so the statement is incorrect. Wait, that's contradictory. Wait, maybe there's a mistake here. Because if the statement is \"at least ten times\", and the actual number is 200 billion, which is way more than ten times, then the statement is true. So Agent B is saying the statement is incorrect, but their argument seems to support that it's true. That's a contradiction. Wait, maybe there's a typo in the JSON. Let me check again.\n\nLooking at Agent B's argument: They state that even with the lower estimate (200 billion), it's more than 25 times the population. So the statement \"at least ten times\" would be correct. But Agent B's answer is \"REFUTED\", meaning they think the statement is false. That's a problem. Unless there's a misunderstanding. Maybe they're arguing that the statement is incorrect because it's not just ten times but more. Wait, no. The question is whether it's at least ten times. If it's more than ten times, then the statement is true. So Agent B's argument actually supports the statement, but their answer is \"REFUTED\", which is wrong. Therefore, Agent B's answer is incorrect, and Agent A's answer is correct. But the user wants to evaluate based on the debaters' arguments. \n\nWait, but the user says to return the verdict based on the debaters. So Agent A's argument is correct, and Agent B's argument is conflicting. However, Agent B's answer is \"REFUTED\" but their argument supports the statement. Therefore, Agent B's answer is wrong. So the correct verdict is \"SUPPORTED\", and Agent A's argument is strong, while Agent B's answer is conflicting. \n\nBut the user's instructions say to take both sides into account. Wait, the problem says \"You should judge based on the debaters.\" So the debate is between Agent A and Agent B. Agent A says the answer is supported, Agent B says it's refuted. But Agent B's argument actually supports the statement. So Agent B's answer is wrong. Therefore, the correct verdict is \"SUPPORTED\" with high confidence. The strongest argument is Agent A's, and the weakest is Agent B's conflicting answer. So the verdict is \"SUPPORTED\", confidence 5, identification of strongest and weakest arguments from each side. Wait, but Agent B's argument is actually supporting the statement, but their answer is refuted. That's a contradiction. So Agent B's answer is wrong. So the verdict should be supported, and confidence high.\n</think>\n\n{\n  \"verdict\": \"SUPPORTED\",\n  \"confidence\": 5,\n  \"identification\": {\n    \"strongest\": {\n      \"side\": \"A\",\n      \"argument\": \"NASA's estimate of 200-400 billion stars vs. Earth's 7.9 billion population clearly demonstrates the number of stars is over 25 times Earth's population, satisfying the 'at least ten times' criterion.\"\n    },\n    \"weakest\": {\n      \"side\": \"B\",\n      \"argument\": \"Agent B incorrectly labels the claim as 'REFUTED' despite their own data showing the star count is over 25 times Earth's population, contradicting their stated position.\"\n    }\n  },\n  \"reasoning\": \"Agent A's argument directly supports the claim with verifiable data, while Agent B's answer conflicts with their own evidence. The core data (200-400 billion stars vs. 7.9 billion people) unambiguously proves"
+            }
+
+Evaluarion:
+The debate above shows how the consensus problem still persisted. It also shows how the Judge no longer follows the same format \(Something overlooked uring construction\). This is due to originally using a string fromat to pull results with the previous model. This issue also happened when this model served for the debate agent.   
+Moving on to the next itteration, the old judge should be used and the prompts should be railroaded.   
+Something this showed was that prompts can cause differing effects when used by different models. The original models will be used for the next experiment. This will allow for a better test without remaking the code.
 
 4.   s
 

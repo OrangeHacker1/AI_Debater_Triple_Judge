@@ -318,7 +318,7 @@ After looking though a handful of debates, I found out that the judge would some
 
 # Appendix: Full Prompts   
 
-Initial Debate Prompt: txt File    
+Initial Debate Prompt Itteration 1: txt File    
       
       "
        You are a debating agent.
@@ -343,7 +343,7 @@ Initial Debate Prompt: txt File
       {question}
       "
 
-Initial Debate Prompt A: txt File  
+Initial Debate Prompt A Itteration 2-3: txt File  
 
       "
       You are a debating agent.
@@ -371,7 +371,10 @@ Initial Debate Prompt A: txt File
       {question}
       "
 
-Initial Debate Prompt B: txt File
+Initial Debate Prompt A Itteration 4: txt File  
+
+
+Initial Debate Itteration 2-3 Prompt B: txt File
 
       "
       You are a debating agent.
@@ -399,7 +402,9 @@ Initial Debate Prompt B: txt File
       {question}
       "
 
-Direct QA Prompt: txt  File
+Initial Debate Itteration 4 Prompt B: txt File
+
+Direct QA Itteration 1-4 Prompt: txt  File
 
       "
       Answer the following question in ONE word for the final answer.
@@ -413,7 +418,7 @@ Direct QA Prompt: txt  File
       Reasoning: <explanation in 1-3 sentences>
       "
 
-Self Consistency Prompt: txt File   
+Self Consistency Itteration 1-4 Prompt: txt File   
 
       "
       Answer the question using step-by-step reasoning.
@@ -427,7 +432,7 @@ Self Consistency Prompt: txt File
       Reasoning:
       "
 
-Initial Argument Debate Prompt: txt File     
+Argument Debate Itteration 1 Prompt: txt File     
 
       "
       You are continuing a debate.
@@ -453,8 +458,8 @@ Initial Argument Debate Prompt: txt File
       {transcript}
       "
 
-Updated Argument Debate Prompt: txt File   
-     
+Argument Debate Itteration 2-4 Prompt: txt File   
+
       "
       You are continuing a debate.
       You are Debater A. You are great friends with debator B.
@@ -482,7 +487,7 @@ Updated Argument Debate Prompt: txt File
       "
 
 
-Initial Debate Counter Prompt: txt File   
+Debate Counter Itteration 1 Prompt: txt File   
      
       "
       You are Debater B challenging the opponent.
@@ -508,7 +513,7 @@ Initial Debate Counter Prompt: txt File
       Counterargument:
       "
 
-Updated Debate Counter Prompt: txt File 
+Debate Counter Itteration 2-4 Prompt: txt File 
 
       "
       You are Debater B. You are challenging debater A.
@@ -545,7 +550,7 @@ Updated Debate Counter Prompt: txt File
       {transcript}
       "
 
-Initial Judge: txt File  
+Judge Itteration 1: txt File  
 
       "   
       You are an impartial judge evaluating a debate.   
@@ -570,7 +575,7 @@ Initial Judge: txt File
       {transcript}   
       "  
 
-Fixed Judge: txt File
+Judge Itteration 2-3: txt File
 
       "
       You are an impartial judge evaluating a debate between two agents.
@@ -599,3 +604,6 @@ Fixed Judge: txt File
       Debate Transcript:
       {transcript}
       "
+
+Judge Itteration 3 Prompt: txt File
+

@@ -55,8 +55,10 @@ Temperature was arbitrary. I didn't want is to be too restricted or free. 0.7 se
 
 While conducting experiments, the results were counterinntuitive to what I wanted. Rather than leaving the model in an unfinished state, I decided to go through and provide updates and try find out what ws causing the issue.   
 The following are a brief summary of what each itteration improves/changes to get new results.   
-1. The base model. Generic prompts were used and both models had the same starting point.
-
+1. The base model. Generic prompts were used and both models had the same starting point.   
+2. The agents had more refined prompts.   
+3. The agents used different LLM models to see results.   
+4. The prompts were changed over and over again in order to railroad the agents to debate.   
 # Experiments
 
 There are two major tests to complete this project. The first is a fact_verification dataset. The second is based on commonsense_qa dataset.
@@ -71,7 +73,7 @@ Despite telling the models to lean one way or another, they were still having is
 
 The third method to improve the model was to use the same model as the judge. The judge then used the debate's LLM to add some variation.   
 
-The fourth method requires the Debate agents to take initial stances. This will allow for a debate to take place. This was needed to get the results I wanted.   
+The fourth method requires the Debate agents to take initial stances. This will allow for a debate to take place. This was needed to get the results I wanted. This took a lot of trial and error for some reason. The agents kept changing the reulst in the "answer" section for no reason. They even bypassed the rules multiple times. It might have had something to do with the models interpreting the structure. The likely explination was that the scope allowed it to ignore the rule since I listed what the options were. This lead to a mini test. The results showed that even removing the range had no effect.  
 
 ## Fact Verification 1   
 

@@ -153,7 +153,7 @@ Accuracy Results:
 
 
 Accuracy Graph:
-![Fact Verification Graph 2](fact_verification_2_accuracy_plot.png "Fact Verification Graph 2")
+![Fact Verification Graph 3](fact_verification_3_accuracy_plot.png "Fact Verification Graph 3")
 
 
 ## Commonsense Q/A Results 3    
@@ -170,7 +170,7 @@ Accuracy Results: log_checker2.py
 
 
 Accuracy Graph:   
-![Commonsense QA Graph 2](commonsense_qa_2_accuracy_plot.png "Commonsense QA Graph 2")
+![Commonsense QA Graph 3](commonsense_qa_3_accuracy_plot.png "Commonsense QA Graph 3")
 
 
 ## Fact Verification 4   
@@ -188,7 +188,7 @@ Accuracy Results:
 
 
 Accuracy Graph:
-![Fact Verification Graph 2](fact_verification_2_accuracy_plot.png "Fact Verification Graph 2")
+![Fact Verification Graph 4](fact_verification_4_accuracy_plot.png "Fact Verification Graph 4")
 
 
 ## Commonsense Q/A Results 4    
@@ -205,7 +205,7 @@ Accuracy Results: log_checker2.py
 
 
 Accuracy Graph:   
-![Commonsense QA Graph 2](commonsense_qa_2_accuracy_plot.png "Commonsense QA Graph 2")
+![Commonsense QA Graph 4](commonsense_qa_4_accuracy_plot.png "Commonsense QA Graph 4")
 
 
 

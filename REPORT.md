@@ -67,9 +67,11 @@ The initial testing was done using generalized prompts at the beginning. However
 
 The second testing results were done using better prompts that try to divide the debating agents. I wanted to make them different to create different answers.   
 The hope was to get the agents to debate, but there was a consensus for all of the agents once more. This lead to a question of whether there was a different problem.  
-Despite telling the models to lean one way or another, they were still having issues with disagreeing.
+Despite telling the models to lean one way or another, they were still having issues with disagreeing.   
 
-The third method to improve the model was to use the same model as the judge. The judge is a more sefisticated 
+The third method to improve the model was to use the same model as the judge. The judge then used the debate's LLM to add some variation.   
+
+The fourth method requires the Debate agents to take initial stances. This will allow for a debate to take place. This was needed to get the results I wanted.   
 
 ## Fact Verification 1   
 
@@ -136,6 +138,77 @@ Accuracy Graph:
 ![Commonsense QA Graph 2](commonsense_qa_2_accuracy_plot.png "Commonsense QA Graph 2")
 
 
+## Fact Verification 3   
+
+Accuracy Results:
+
+- "debate_accuracy": 0.65,
+- "direct_qa_accuracy": 0.77,
+- "self_consistency_accuracy": 0.6,
+- "debate_samples": 100,
+- "direct_samples": 100,
+- "self_consistency_samples": 100,
+- "no_initial_consensus": 0
+
+
+
+Accuracy Graph:
+![Fact Verification Graph 2](fact_verification_2_accuracy_plot.png "Fact Verification Graph 2")
+
+
+## Commonsense Q/A Results 3    
+
+Accuracy Results: log_checker2.py   
+
+- "debate_accuracy": 0.62,
+- "direct_qa_accuracy": 0.6866666666666666,
+- "self_consistency_accuracy": 0.6666666666666666,
+- "debate_samples": 150,
+- "direct_samples": 150,
+- "self_consistency_samples": 150,
+- "no_initial_consensus": 0
+
+
+Accuracy Graph:   
+![Commonsense QA Graph 2](commonsense_qa_2_accuracy_plot.png "Commonsense QA Graph 2")
+
+
+## Fact Verification 4   
+
+Accuracy Results:
+
+- "debate_accuracy": 0.65,
+- "direct_qa_accuracy": 0.77,
+- "self_consistency_accuracy": 0.6,
+- "debate_samples": 100,
+- "direct_samples": 100,
+- "self_consistency_samples": 100,
+- "no_initial_consensus": 0
+
+
+
+Accuracy Graph:
+![Fact Verification Graph 2](fact_verification_2_accuracy_plot.png "Fact Verification Graph 2")
+
+
+## Commonsense Q/A Results 4    
+
+Accuracy Results: log_checker2.py   
+
+- "debate_accuracy": 0.62,
+- "direct_qa_accuracy": 0.6866666666666666,
+- "self_consistency_accuracy": 0.6666666666666666,
+- "debate_samples": 150,
+- "direct_samples": 150,
+- "self_consistency_samples": 150,
+- "no_initial_consensus": 0
+
+
+Accuracy Graph:   
+![Commonsense QA Graph 2](commonsense_qa_2_accuracy_plot.png "Commonsense QA Graph 2")
+
+
+
 # Analysis
 
 Looking at the Fact Varification section, it was found that there was a 65% accuracy with the debate models. This was due to issues with conflict.
@@ -151,7 +224,7 @@ The following are brief summaries of what I found while looking at the results f
 3. 
 
 In Depth Analyis:
-1.
+1. NOT NEEDED
 
 Example: 
 

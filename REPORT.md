@@ -169,14 +169,13 @@ Accuracy Graph:
 
 Accuracy Results:
 
-- "debate_accuracy": 0.65,
-- "direct_qa_accuracy": 0.77,
+- "debate_accuracy": 0.64,
+- "direct_qa_accuracy": 0.68,
 - "self_consistency_accuracy": 0.6,
-- "debate_samples": 100,
-- "direct_samples": 100,
-- "self_consistency_samples": 100,
-- "no_initial_consensus": 0
-
+- "debate_samples": 150,
+- "direct_samples": 150,
+- "self_consistency_samples": 150  
+   
 
 
 Accuracy Graph:

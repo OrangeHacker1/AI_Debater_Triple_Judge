@@ -21,6 +21,8 @@ The fourth phase involves documenting and saving all three of the prompting meth
 
 **NOTE:** The accuracy given at the end of this run is not accurate. I made a new function after bugging it while vibe coding and pushing the changes. I created a call that would let me analyze the results whenever I wanted as opposed to only during the call. If this note is still here, the code still outputs the outdated results at the bottom of the run.   
 
+
+
 After completing the initial 4 phases, a second program is used to check for accuracy. The code to run is as follows:   
 
       python log_checker.py
@@ -58,7 +60,9 @@ The following are a brief summary of what each itteration improves/changes to ge
 1. The base model. Generic prompts were used and both models had the same starting point.   
 2. The agents had more refined prompts.   
 3. The agents used different LLM models to see results.   
-4. The prompts were changed over and over again in order to railroad the agents to debate.   
+4. The prompts were changed over and over again in order to railroad the agents to debate. Minor corrections were made throughout the code to better facilitate the corrections. (A bug was found in extract_answer() function. This is could have caused the 100% rate, as it only validated for SUPPORTED. There was no REFUTED test case. However, this would not have resolved that many of the debates started with concensus. After making these corrections, debates of varrying lengths would be possible.)   
+
+After completing the steps above, this program would now have debates with varrying lengths. A new data point would be saved for later viewing but will not be used in this exploration. This data captures the lengths of the debates. Longer debates could have less chances for mistakes, this will not be done extensively tested in this project, but I decided to add this to the dataset for later viewing and exploration in a later project.    
 # Experiments
 
 There are two major tests to complete this project. The first is a fact_verification dataset. The second is based on commonsense_qa dataset.

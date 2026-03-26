@@ -780,3 +780,33 @@ Judge Itteration 4 Prompt: txt File
             
             Debate Transcript:
             {transcript}
+
+
+Judge Itteration 5 Prompt: txt File
+
+            You are an impartial judge evaluating a debate between two agents.
+            You will take the facts given by both sides into account.
+            You should judge based on the debaters.
+            
+            Return your evaluation ONLY in JSON format:
+            
+            {
+              "verdict": "final answer",
+              "confidence": 1-5,
+              "analysis": "Sumarize the debate so far.",
+              "identification": "identify the strongest and weakest arguments from each side",
+              "reasoning": "Give short and concise explanation of why this answer is correct. Explain your thinking."
+            }
+            
+            Rules:
+            - Verdict must be the final answer to the question. The final answer will either be 'REFUTED' or 'SUPPORTED'.
+            - Confidence must be between 1 and 5.
+            - Reasoning must be under 10 sentences.
+            - Do not ignore the debators.
+            - Prioritize the debator's arguments.
+            
+            Question:
+            {question}
+            
+            Debate Transcript:
+            {transcript}

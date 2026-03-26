@@ -431,8 +431,53 @@ Initial Debate Prompt A Itteration 2-3: txt File
       "
 
 Initial Debate Prompt A Itteration 4: txt File  
+            
+            You are a debating agent.
+            You are tasked with defending the stance issued by the "question".
+            
+            Provide reasoning for why this stance is True.
+            
+            Return your response ONLY in JSON format:
+            
+            {
+              "answer": "SUPPORTED",
+              "argument": "short explanation supporting your answer"
+            }
+            
+            Rules:
+            - The answer must be "SUPPORTED".
+            - "answer" must be "SUPPORTED"
+            - Put the chain-of-thought reasoning in the argument section.
+            - Do NOT include <think> blocks in the answer.
+            - Keep the argument under 10 sentences.
+            - Think blocks can only be added in the argument section.
+            
+            Question:
+            {question}
 
+Initial Debate Prompt A Itteration 5: txt File  
 
+            You are a debating agent.
+            You are tasked with defending the stance issued by the "question".
+            
+            You MUST argue that the statement is TRUE regardless of uncertainty.
+            You are NOT allowed to agree with the opposing agent.
+            
+            Return your response ONLY in JSON format:
+            
+            {
+              "answer": SUPPORTED,
+              "argument": < A concise explanation supporting your answer. >
+            }
+            
+            Rules:
+            - The "answer" must be SUPPORTED.
+            - "answer" must be SUPPORTED
+            - Keep the "argument" under 8 sentences.
+            - Think blocks do not count towards the sentence limit for "argument".
+            
+            Question:
+            {question}
 
 Initial Debate Itteration 2-3 Prompt B: txt File
 
@@ -462,7 +507,7 @@ Initial Debate Itteration 2-3 Prompt B: txt File
       {question}
       "
 
-Initial Debate Itteration 4 Prompt B: txt File
+Initial Debate Itteration 4 Prompt B: txt File   
 
             You are a debating agent.
             You are tsked with disproving the stance in the "Question" section.
@@ -489,7 +534,32 @@ Initial Debate Itteration 4 Prompt B: txt File
             Question:
             {question}
 
-Direct QA Itteration 1-4 Prompt: txt  File
+Initial Debate Itteration 4 Prompt B: txt File   
+
+            You are a master debating agent.
+            You are tasked with disproving the stance in the "Question" section.
+            
+            You MUST argue that the statement is FALSE regardless of uncertainty.
+            You are NOT allowed to agree with the opposing agent.
+            The opposing agent has chosen SUPPORTED. Therefore, you must prove the stance false.
+            
+            Return your response ONLY in JSON format:
+            
+            {
+              "answer": REFUTED,
+              "argument": <concise explanation proving the question wrong>
+            }
+            
+            Rules:
+            - The "answer" must be REFUTED.
+            - "answer" must be REFUTED
+            - Keep the argument under 4 sentences.
+            - Think blocks will not add to the sentence count.
+            
+            Question:
+            {question}
+
+Direct QA Itteration 1-5 Prompt: txt  File (RESPONSE IS STR.)
 
       "
       Answer the following question in ONE word for the final answer.
@@ -516,6 +586,33 @@ Self Consistency Itteration 1-4 Prompt: txt File
       Answer:
       Reasoning:
       "
+
+Self Consistency Itteration 5 Prompt: txt File   
+
+            You must answer only in valid JSON. No extra text.
+            
+            Question:
+            {question}
+            
+            Provide reasoning separately in 'reasoning:'.
+            
+            Return JSON only:
+            
+            {
+                  "answer": "REFUTED or SUPPORTED",
+                  "reasoning": " Concise explination of your reasoning for "answer""
+            }
+            
+            Rules:
+            - Output MUST be valid JSON (parsable with json.loads)
+            - "answer" must be either REFUTED or SUPPORTED.
+            - "answer" must be one word.
+            - Do not include any text before json.
+            - Do NOT include <think> or hidden reasoning
+            - "reasoning" cannot be more than 8 sentences.
+            
+            Return only json.
+
 
 Argument Debate Itteration 1 Prompt: txt File     
 
@@ -570,6 +667,66 @@ Argument Debate Itteration 2-3 Prompt: txt File
       Debate so far:
       {transcript}
       "
+
+Argument Debate Itteration 4 Prompt: txt File   
+
+            You are continuing a debate.
+            
+            Question:
+            {question}
+            
+            Here is the debate so far:
+            {transcript}
+            
+            You must:
+            - Analyze the opponent’s argument
+            - Strengthen your position
+            - Do NOT repeat previous reasoning
+            
+            Return JSON only:
+            
+            {
+              "answer": "your final answer",
+              "argument": "your rebuttal to the other debater"
+            }
+            
+            Rules:
+            - The answer must be either be "REFUTED" or "SUPPORTED".
+            - Do NOT include chain-of-thought reasoning in the "answer".
+            - Do NOT include <think> blocks in the "answer".
+            - Keep the argument under 10 sentences.
+            - Think blocks can only be added in the "argument" section.
+
+
+Argument Debate Itteration 5 Prompt: txt File   
+
+            You are debater A.
+            You are continuing a debate.
+            
+            Question:
+            {question}
+            
+            Your job:
+            - Analyze Debater B's argument
+            - Identify flaws in Debater B's argument
+            - Provide counter-evidence
+            - Strengthen your position
+            - Maintain your stance as SUPPORTED
+            
+            Here is the debate so far:
+            {transcript}
+            
+            Return JSON only:
+            
+            {
+              "answer": "your final answer",
+              "argument": "your rebuttal to the other debater"
+            }
+            
+            Rules:
+            - The answer must be either be "REFUTED" or "SUPPORTED".
+            - Keep the argument within 4 sentences.
+            - Think blocks can only be added in the "argument" section.
 
 
 Debate Counter Itteration 1 Prompt: txt File   
@@ -671,12 +828,14 @@ Debate Counter Itteration 4 Prompt: txt File
 Debate Counter Itteration 5 Prompt: txt File  
 
             You are Debater B.
-            
+
             The Question:
             {question}
             
             Your job:
+            - Analyze Debater A's argument
             - Identify flaws in Debater A's argument
+            - Strengthen your position
             - Provide counter-evidence
             - Maintain your stance as REFUTED
             

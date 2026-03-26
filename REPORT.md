@@ -1,3 +1,6 @@
+This report is more like a devlog.
+I have created a condenced version for the completed code.
+
 # Methodology
 For this project, several different files were created to generate a modular code that can be broken up and change to fit the needs of the assignment.
 While building this assignment, there wre several issues that had to be addressed and fixed. This will be talked about in the Experiments section.   

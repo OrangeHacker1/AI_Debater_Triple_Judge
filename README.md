@@ -1,15 +1,30 @@
-# AI_Debater_Triple_Judge
-Assignment 2 of LLM Class. This is a basic AI agent program that can invoke 3 agents. 2 agents are responsible for picking a stance and defending their claims, while the remaining 1 serves as a judge to decide what the answer is based on the discussion/debate with the debater agents.   
-This is also compared with a direct qa and a self_consistency with 6 tests. This was used to run a base line to compare the efficiency of the debate model compare to other solutions.   
-For this project, two datasets were used. The answers being either ("SUPPORTED" or "REFUTED") or ("Yes" or "No").   
+# PROJECT NAME: AI DEBATER TRIPLE JUDGE
 
-**SETUP:**
+## SUMMARY:
 
-There are 2 ways to run this program.   
-  1. VSCode / Local
-  2. Website  
+This project is designed to use LLMs to hold a debate to further increase accuracy and diswade digital halucinations.   
+The goal is to design a program that can uphold a debate with multiple agents and have both a judge and a panel of Judges review the debate to determine the output.   
+All questions used for this debate will be statements that are either (SUPPORTED, yes, true) or (REFUTED, no, false).   
 
-**REQUIREMENTS:** In order to run this program, the following packages must be installed:   
+## USAGE:
+This project has two methods of interaction with users:
+1. Hard Code  
+2. User Interface (UI)   
+    
+Hard Code: This method involves invoking the main method to load specific datasets with ground truth values and questions. The format for datasets must be in json. This will store the json outputs for all three output files in the designated 'logging' section of the 'config.ymal' file. The path can be modified for different folder usage.   
+Command:
+
+    python main.py --dataset {datasets_folder}/{dataset}.json
+NOTE: The '--dataset' command checks the working directory.   
+
+User Interface (UI): This is a dynamic approach for asking individual questions. This can be used to prompt and test individual questions to the debate and base methods. There is no storage method to save or test accuracies. Nor is there a way to test ground truth values. This method will launch a website hosted on the local machine. You can connected to the website via: 'http://localhost:8000'.    
+Command:   
+
+    python main.py --ui
+NOTE: This command will open a webpage. You need to connect via a webpage.
+
+## Required Packages:
+
   1. Matlib   
   2. PyYAML   
   3. fastapi  
@@ -17,30 +32,30 @@ There are 2 ways to run this program.
   5. fastapi uvicorn   
   6. python-dotenv   
 
-**Dependencies:**   
-In order to repeat this, you need to download the code files and use the following command to initiate connection to the LLMs: "python main.py --dataset datasets/<NAME_OF_DATASET>.json"   
+## Datasets Used
+
+There are two main datasets used.   
 The following datasets are fact verification and commonsense qa. These datasets were gathered from [SciFact](https://github.com/allenai/scifact?tab=readme-ov-file) and [StrategyQA](https://huggingface.co/datasets/voidful/StrategyQA/resolve/main/strategyqa_train.json).     
-NAME_OF_DATASET:
-  1. fact_verification  
-  2. commonsense_qa  
+NAME_OF_DATASET:    
+  1.  fact_verification   
+  2. commonsense_qa   
 
-To run the  program locally, you need to downlad the modular code section and store it in the acctive directory.  
-You then need to add all of the other files. The exception includes the datasets. Two datasets were included. These are the datasets I used.    
 
- 
-Checking Results:     
-The following are commands to run phase 4 (Accuracy).    
-It is possible to check both the "logs\debate_runs" and "logs\debate_runs\<subfolder>".      
-The subfolder can be used within the debate_runs folder to isolate datasets.   
-\# Usage: python log_checker.py   
-\# Usage Subfolder: python log_checker.py --subfolder run_1   
-\# Searches: logs/debate_runs/run_1/    
+## Check Results:
+There are three methods for running tests. Each method is designed to extract additional information for examination. The '--subfolder' pareameter is optional.    
+1. log_checker.py: This python file is designed to scrape a folder to gather all of the results within the logging folder. It is also possible to scrape a subfolder. The commands are as follows.
+Command Line Code:
 
-In order to run the UI website, you need to run the following comand:   
+        python log_checker.py --subfolder {subfolder}
 
-    python main.py --UI   
+3. log_checker1.py: Completes the tasks of log_ckecker.py and looks for mismatched ground truth values and predictions for debates. Debate panels were not included due to overlap. The final output is an accuracy graph. This is saved to the file used.     
+Command Line Code:
 
-After running the UI, you need to connect to your local server using the following:   
+        python log_checker1.py --subfolder {subfolder}
 
-    http://localhost:8000
+5. log_checker2.py: Completes the tasks of logchecker1.py and looks for debates. This is designed to find debates and filter out concensuses.
+Command Line Code:
+
+       python log_checker2.py --subfolder {subfolder}
+
 

@@ -4,6 +4,8 @@
 
 This project is designed to use LLMs to hold a debate to further increase accuracy and diswade digital halucinations.   
 The goal is to design a program that can uphold a debate with multiple agents and have both a judge and a panel of Judges review the debate to determine the output.   
+Baseline models were used to construct a basline accuracy for the LLM used in project.    
+API keys will not be provided. The specs of the LLMs will be listed in the .env file and included in the dependency section in this file.
 All questions used for this debate will be statements that are either (SUPPORTED, yes, true) or (REFUTED, no, false).   
 
 ## USAGE:
@@ -30,7 +32,14 @@ NOTE: This command will open a webpage. You need to connect via a webpage.
   3. fastapi  
   4. uvicorn  
   5. fastapi uvicorn   
-  6. python-dotenv   
+  6. python-dotenv
+
+## Dependencies:
+
+To use this project, you need at least 1 LLM that can be called. The LLMs used for this project to get the results in REPORT_FINAL.md are as follows:
+
+            DEBATER_MODEL=Qwen/Qwen3-8B
+            JUDGE_MODEL=meta-llama/Llama-3.1-8B-Instruct
 
 ## Datasets Used
 

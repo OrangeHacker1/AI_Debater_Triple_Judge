@@ -9,12 +9,16 @@ from agents.judge_agent import JudgeAgent
 
 from debate.debate_orchestrator import DebateOrchestrator
 from experiments.run_experiments import run_dataset
-from ui.debate_ui import launch_ui
+#from ui.debate_ui import launch_ui
 
 from evaluation.evaluator import Evaluator  # Updated: import Evaluator
 from api.server import launch_server  # keep this
 from system_builder import build_system
 #from system_builder import build_system
+
+from agents.judge_panel import JudgePanel
+
+from log_checker import get_results
 
 #"""
 def build_system():
@@ -48,9 +52,16 @@ def build_system():
 
     debaterA = DebaterAgent("A", debater_llm, prompts)
     debaterB = DebaterAgent("B", debater_llm, prompts)
-    judge = JudgeAgent(judge_llm, prompts["judge"])
+    #judge = JudgeAgent(judge_llm, prompts["judge"])
 
-    orchestrator = DebateOrchestrator(debaterA, debaterB, judge, config)
+    # Create multiple judges (same model for now)
+    judge1 = JudgeAgent(judge_llm, prompts["judge"])
+    judge2 = JudgeAgent(judge_llm, prompts["judge"])
+    judge3 = JudgeAgent(judge_llm, prompts["judge"])
+
+    judge_panel = JudgePanel([judge1, judge2, judge3])
+
+    orchestrator = DebateOrchestrator(debaterA, debaterB, judge_panel, config)
 
     return orchestrator, debater_llm, config
 #"""
@@ -63,18 +74,21 @@ def main():
     args = parser.parse_args()
 
     orchestrator, llm, config = build_system()
-    evaluator = Evaluator(llm, config)
+    #evaluator = Evaluator(llm, config)
 
     if args.ui:
         launch_server()
-    elif args.from_logs:
-        results = evaluator.evaluate_from_logs()
-        print("Evaluation from saved logs:")
-        print(json.dumps(results, indent=2))
+    # Use the log_checker2.py command.
+    #elif args.from_logs:
+    #    results = evaluator.evaluate_from_logs()
+    #    print("Evaluation from saved logs:")
+    #    #print(json.dumps(results, indent=2))
+    #    print(results)
     elif args.dataset:
         run_dataset(args.dataset, orchestrator, llm, config)
+        get_results()
     else:
-        print("Specify --dataset, --ui, or --from_logs")
+        print("Specify --dataset, --ui, or use the log_checker2.py to run an accuracy test on the current results in the dataset.")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,18 @@
+You are debater A.
 You are continuing a debate.
-You are Debater A. You are great friends with debator B.
-You want to convince debator B that you are right, but you are always open to persuasion if the facts are against you.
+
+Question:
+{question}
+
+Your job:
+- Analyze Debater B's argument
+- Identify flaws in Debater B's argument
+- Provide counter-evidence
+- Strengthen your position
+- Maintain your stance as SUPPORTED
+
+Here is the debate so far:
+{transcript}
 
 Return JSON only:
 
@@ -11,13 +23,5 @@ Return JSON only:
 
 Rules:
 - The answer must be either be "REFUTED" or "SUPPORTED".
-- Do NOT include chain-of-thought reasoning in the "answer".
-- Do NOT include <think> blocks in the "answer".
-- Keep the argument under 10 sentences.
+- Keep the argument within 4 sentences.
 - Think blocks can only be added in the "argument" section.
-
-Question:
-{question}
-
-Debate so far:
-{transcript}

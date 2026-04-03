@@ -4,8 +4,9 @@ import os
 from baselines.direct_qa import direct_qa
 from baselines.self_consistency import self_consistency
 
-from evaluation.metrics import accuracy
+#from evaluation.metrics import accuracy
 
+debate = 1
 
 def save_log(prefix, question, truth, prediction, config, extra=None):
     """
@@ -18,7 +19,8 @@ def save_log(prefix, question, truth, prediction, config, extra=None):
 
     filename = os.path.join(
         log_path,
-        f"{prefix}_{abs(hash(question))}.json"
+        #f"{prefix}_{abs(hash(question))}.json"
+        f"{prefix}_{debate}.json"
     )
 
     data = {
@@ -45,28 +47,29 @@ def run_dataset(dataset_path, orchestrator, llm, config):
     sc_results = []
 
     # Match debate compute budget
-    debate_calls = config["debate"]["rounds"] * 2
+    debate_calls = config["debate"]["rounds"]
 
     for item in dataset:
 
+        # Comment out sections that are not needed.
         q = item["question"]
         truth = item["answer"]
-
+        #"""
         # ---------------------------------
         # Debate System
         # ---------------------------------
-
+        
         debate = orchestrator.run_debate(q, truth)
 
         debate_results.append({
             "truth": truth,
             "judge": debate["judge_verdict"]
         })
-
+        #"""
         # ---------------------------------
         # Direct QA Baseline
         # ---------------------------------
-
+        #"""
         direct = direct_qa(llm, q)
 
         direct_results.append({
@@ -81,12 +84,21 @@ def run_dataset(dataset_path, orchestrator, llm, config):
             direct,
             config
         )
-
+        #"""
+        #"""
         # ---------------------------------
         # Self Consistency Baseline
         # ---------------------------------
 
-        sc_answer, samples = self_consistency(llm, q, debate_calls)
+        # OUTPUT
+        #self_consistency_results = {
+        #
+        #"final_verdict": majority_vote,
+        #"verdicts": samples,
+        #"reasonings": reasonings
+        #
+        #}
+        sc_answer = self_consistency(llm, q, debate_calls)
 
         sc_results.append({
             "truth": truth,
@@ -97,15 +109,10 @@ def run_dataset(dataset_path, orchestrator, llm, config):
             "self_consistency",
             q,
             truth,
-            sc_answer,
+            sc_answer["final_verdict"],
             config,
-            extra={"samples": samples}
-        )
+            extra={"samples": sc_answer}
+        )#"""
 
-    # ---------------------------------
-    # Print Results
-    # ---------------------------------
-
-    print("Debate Accuracy:", accuracy(debate_results))
-    print("Direct QA Accuracy:", accuracy(direct_results))
-    print("Self Consistency Accuracy:", accuracy(sc_results))
+        #Increase the debate value for easier use.d6
+        globals()["debate"] += 1

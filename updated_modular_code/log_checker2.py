@@ -71,6 +71,14 @@ def extract_prediction(data, filename):
     return None
 
 
+# Only use on debate files with a Judge_Panels. 
+def extract_panel_prediction(data, filename):
+    verdict_panel = None
+    if filename.startswith("debate"):
+        verdict_panel = data.get("judge_panel_verdict")
+
+    return verdict_panel
+
 # --------------------------------------------------
 # Compute accuracy
 # --------------------------------------------------
@@ -92,12 +100,14 @@ def plot_results(results, save_path):
 
     methods = [
         "Debate",
+        "Debate Panel",
         "Direct QA",
         "Self Consistency"
     ]
 
     scores = [
         results["debate_accuracy"],
+        results["debate_panel_accuracy"],
         results["direct_qa_accuracy"],
         results["self_consistency_accuracy"]
     ]
@@ -125,6 +135,7 @@ def check_logs(log_dir):
     debate_results = []
     direct_results = []
     sc_results = []
+    debate_panel_results = []
 
     misclassified = []
 
@@ -175,9 +186,14 @@ def check_logs(log_dir):
 
         elif filename.startswith("debate"):
             debate_results.append(correct)
+            # If there is a debate, you need to grab the judge pannel as well. Call a second helper function.
+            #HELPER FUNCTION for judge_panel_verdict.
+            pred_panel = normalize_answer(extract_panel_prediction(data, filename))
+            debate_panel_results.append(pred_panel == truth)
 
     results = {
         "debate_accuracy": compute_accuracy(debate_results),
+        "debate_panel_accuracy": compute_accuracy(debate_panel_results),
         "direct_qa_accuracy": compute_accuracy(direct_results),
         "self_consistency_accuracy": compute_accuracy(sc_results),
         "debate_samples": len(debate_results),

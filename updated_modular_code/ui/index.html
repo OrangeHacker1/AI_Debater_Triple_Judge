@@ -12,7 +12,7 @@ margin:40px;
 
 .container{
 display:grid;
-grid-template-columns:1fr 1fr 1fr;
+grid-template-columns:1fr 1fr 1fr 1fr;
 gap:20px;
 }
 
@@ -21,6 +21,7 @@ border:1px solid gray;
 padding:15px;
 height:300px;
 overflow:auto;
+white-space: pre-wrap;
 }
 
 .final{
@@ -88,6 +89,11 @@ Judge Key <input id="jkey"><br>
 <pre id="sc"></pre>
 </div>
 
+<div class="box">
+<h3>Judge Panel</h3>
+<pre id="panel"></pre>
+</div>
+
 </div>
 
 <div class="final">
@@ -96,9 +102,12 @@ Judge Key <input id="jkey"><br>
 
 Debate: <span id="f_debate"></span><br>
 Direct QA: <span id="f_direct"></span><br>
-Self Consistency: <span id="f_sc"></span>
+Self Consistency: <span id="f_sc"></span><br>
+Judge Panel: <span id="f_panel"></span><br>
+Agreement: <span id="f_agreement"></span>
 
 </div>
+
 
 <script>
 
@@ -107,10 +116,13 @@ function clearResults(){
 document.getElementById("debate").textContent=""
 document.getElementById("direct").textContent=""
 document.getElementById("sc").textContent=""
+document.getElementById("panel").textContent=""
 
 document.getElementById("f_debate").textContent=""
 document.getElementById("f_direct").textContent=""
 document.getElementById("f_sc").textContent=""
+document.getElementById("f_panel").textContent=""
+document.getElementById("f_agreement").textContent=""
 
 }
 
@@ -152,6 +164,79 @@ alert("Env Saved")
 }
 
 async function runDebate(){
+
+clearResults()
+
+let q=document.getElementById("question").value
+
+let res=await fetch("/run_debate",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({question:q})
+})
+
+let data=await res.json()
+
+// -----------------------------
+// Main outputs
+// -----------------------------
+document.getElementById("debate").textContent =
+JSON.stringify(data.debate.transcript,null,2)
+
+document.getElementById("direct").textContent =
+JSON.stringify(data.direct_qa,null,2)
+
+document.getElementById("sc").textContent =
+JSON.stringify(data.self_consistency,null,2)
+
+// -----------------------------
+// Judge Panel (NEW)
+// -----------------------------
+let panel = data.debate.judge_panel
+
+let panelText = ""
+
+if(panel && panel.judges){
+
+    panel.judges.forEach(j => {
+
+        panelText += "Judge " + j.judge_id + "\n"
+        panelText += "Verdict: " + j.verdict + "\n"
+        panelText += "Reasoning:\n" + j.reasoning + "\n"
+        panelText += "-------------------------\n"
+
+    })
+
+}
+
+document.getElementById("panel").textContent = panelText
+
+// -----------------------------
+// Final answers
+// -----------------------------
+
+let single_panel = data.debate.judge_verdict
+let direct_qa_results = data.direct_qa
+let self_c = data.self_consistency
+
+document.getElementById("f_debate").textContent =
+single_panel ? single_panel.verdict : "N/A"//data.debate.judge_verdict
+
+document.getElementById("f_direct").textContent =
+direct_qa_results ? direct_qa_results.prediction : "N/A"//data.direct_qa
+
+document.getElementById("f_sc").textContent =
+self_c ? self_c.final_verdict : "N/A"//data.self_consistency["final_verdict"]
+
+document.getElementById("f_panel").textContent =
+panel ? panel.final_verdict : "N/A"
+
+document.getElementById("f_agreement").textContent =
+panel ? panel.agreement : "N/A"
+
+}
+
+async function runDebate_legacy(){
 
 clearResults()
 

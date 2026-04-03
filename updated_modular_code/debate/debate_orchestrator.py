@@ -10,14 +10,13 @@ class DebateOrchestrator:
 
         self.A = debaterA
         self.B = debaterB
-        self.judge = judge
+        self.judge = judge # Judge Panel
         self.config = config
 
 
     def run_debate(self, question, truth=None):
 
         print(f"Debate: {debate}")
-        globals()["debate"] += 1
         #debate = debate +1
         transcript = []
         history = []
@@ -48,7 +47,7 @@ class DebateOrchestrator:
         })
 
         # Check immediate consensus
-        if answerA == answerB:
+        if answerA is not None and answerB is not None and answerA == answerB:
             consensus = True
 
         # ----------------------------
@@ -102,6 +101,8 @@ class DebateOrchestrator:
         # Phase 3 — Judge Evaluation
         # ----------------------------
 
+
+        # Modify for triple Judge
         verdict = self.judge.evaluate(question, transcript_str)
 
         result = {
@@ -109,25 +110,51 @@ class DebateOrchestrator:
             "ground_truth": truth,
             "consensus": consensus,
             "transcript": transcript,
-            "judge_verdict": verdict
+
+            # Final answers
+            "judge_verdict": verdict["judges"][0], # First Judge Response
+            "judge_panel_verdict": verdict["final_verdict"], # Judge Pooling
+
+            # Panel details
+            "judge_panel": verdict,
+
+            # NEW: Direct reasoning access
+            "judge_reasonings": verdict["reasonings"]
         }
 
         self.save_log(result)
-
+        globals()["debate"] += 1
         return result
 
+
     def extract_answer(self, response):
+        """
+        Extract answer from LLM JSON output safely.
+        """
+
+        if response is None:
+            return None
+
+        # If already dict
+        # Check for type.
         if isinstance(response, dict):
-            return response.get("answer", "SUPPORTED")
-        return "SUPPORTED"
-    """
-    def extract_answer(self, text):
+            return response.get("answer")
 
-        if "Answer:" in text:
-            return text.split("Answer:")[1].split("\n")[0].strip()
+        # If string → try parsing JSON
+        if isinstance(response, str):
+            try:
+                parsed = json.loads(response)
+                return parsed.get("answer")
+            except Exception:
+                # fallback: try to detect manually
+                text = response.lower()
+                if "supported" in text:
+                    return "SUPPORTED"
+                if "refuted" in text:
+                    return "REFUTED"
 
-        return text.strip()
-    """
+        return None
+
 
     def save_log(self, result):
 
@@ -137,7 +164,8 @@ class DebateOrchestrator:
 
         filename = os.path.join(
             path,
-            f"debate_{abs(hash(result['question']))}.json"
+            #f"debate_{abs(hash(result['question']))}.json"
+            f"debate_{debate}.json"
         )
 
         with open(filename, "w", encoding="utf-8") as f:

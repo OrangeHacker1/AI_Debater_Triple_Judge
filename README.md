@@ -36,6 +36,8 @@ NOTE: This command will open a webpage. You need to connect via a webpage.
 
 ## Dependencies:
 
+IMPORTANT: In addition to the Updated Modular Code, you need to add the prompts file into the working directory to use the same prompts. The debater prompts need to be added along with the given datasets to produce the reults. Similarly, the datasets used can be found and added to the working directory as well.    
+
 To use this project, you need at least 1 LLM that can be called. The LLMs used for this project to get the results in REPORT_FINAL.md are as follows:
 
             DEBATER_MODEL=Qwen/Qwen3-8B

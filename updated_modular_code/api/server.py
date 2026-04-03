@@ -4,8 +4,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
+from baselines.direct_qa import direct_qa
+from baselines.self_consistency import self_consistency
+
 from system_builder import build_system
-from evaluation.evaluator import Evaluator
+#from evaluation.evaluator import Evaluator
 from fastapi.responses import FileResponse
 
 
@@ -93,18 +96,27 @@ API_JUDGE={env.judge_key}
 @app.post("/run_debate")
 def run_debate(req: QuestionRequest):
 
+    # Update for tripple judge!
     global orchestrator, llm, config
 
     if orchestrator is None:
         orchestrator, llm, config = build_system()
 
-    evaluator = Evaluator(llm, config)
+    #evaluator = Evaluator(llm, config)
 
+    # Match debate compute budget
+    debate_calls = config["debate"]["rounds"]
+
+    # ERROR Legacy used.
     debate_result = orchestrator.run_debate(req.question)
 
-    direct = evaluator.direct_qa(req.question)
-    sc_answer, _ = evaluator.self_consistency(req.question)
+    direct = direct_qa(llm, req.question)
 
+    sc_answer = self_consistency(llm, req.question, debate_calls)
+
+    #direct = evaluator.direct_qa(req.question)
+    #sc_answer, _ = evaluator.self_consistency(req.question)
+    print("RESULTS WORK")
     return {
         "debate": debate_result,
         "direct_qa": direct,

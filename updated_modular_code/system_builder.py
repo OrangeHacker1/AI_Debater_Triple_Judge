@@ -8,6 +8,8 @@ from agents.judge_agent import JudgeAgent
 
 from debate.debate_orchestrator import DebateOrchestrator
 
+from agents.judge_panel import JudgePanel
+
 
 def build_system():
     env = load_environment()
@@ -29,6 +31,7 @@ def build_system():
         config["generation"]["max_tokens"]
     )
 
+    # Load all prompts
     prompts = {
         "initial_A": open("prompts/debater_initial_A.txt", encoding="utf-8").read(),
         "initial_B": open("prompts/debater_initial_B.txt", encoding="utf-8").read(),
@@ -39,8 +42,15 @@ def build_system():
 
     debaterA = DebaterAgent("A", debater_llm, prompts)
     debaterB = DebaterAgent("B", debater_llm, prompts)
-    judge = JudgeAgent(judge_llm, prompts["judge"])
+    #judge = JudgeAgent(judge_llm, prompts["judge"])
 
-    orchestrator = DebateOrchestrator(debaterA, debaterB, judge, config)
+    # Create multiple judges (same model for now)
+    judge1 = JudgeAgent(judge_llm, prompts["judge"])
+    judge2 = JudgeAgent(judge_llm, prompts["judge"])
+    judge3 = JudgeAgent(judge_llm, prompts["judge"])
+
+    judge_panel = JudgePanel([judge1, judge2, judge3])
+
+    orchestrator = DebateOrchestrator(debaterA, debaterB, judge_panel, config)
 
     return orchestrator, debater_llm, config

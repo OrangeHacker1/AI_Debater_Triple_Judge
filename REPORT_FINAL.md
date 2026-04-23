@@ -506,6 +506,7 @@ A future work would involve remaking the code to have a self_consistency base mo
 For this project, there were five itterations used to fine tune and create better prompts. Despite doing 5 rounds of experimentation, the results didn't come out as expected. This lead to questions on how this could be rectified. Despite not adding much to the Direct QA model, it was able to consistently answer questions and maintain a high level of accuracy. This model was zero shot. Only the output format was defined along with chain of thought prompting.   
 The self Consistency prompts had been improved for the final itteration. There were issues with it giving reasonings for its answer instead of a one word answer, even when told not to or told to use only one word. Similarly, zero shot prompting was used.    
 The debate prompt is the one with the most trouble. Even the final itteration did not produce good results, compared to the baselines. The method was expected to exceed the baseline of both, yet managed to fail. Both the debate agents and the judge methods required, and still need, fine tuning to get better results. A more in depth explination was given above.   
+    
 The prompts used are in the appendex section for review.   
 
 ## Appendix: Full Prompts   

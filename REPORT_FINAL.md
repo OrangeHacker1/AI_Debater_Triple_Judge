@@ -5,6 +5,8 @@ This summarizes and explains the final code and results found while experimentin
 This project's primary function is gain a better understanding of prompting to LLMs and designing a way for them to interact with each other.  
 The project's primary goal is to answer the following question: 'Can a structured adversarial debate between two LLM agents, supervised by an LLM judge, produce more accurate and well-
 reasoned answers than a single LLM answering directly.'
+The judge used this LLM model: 'Qwen/Qwen3-8B'.   
+The debating agents and baselines used this LLM model: ''.
 This project is broken up into 3 parts.
 The project uses these parts to run experiments with different prompts and parameters. The parameters used can be modified in the ymal file for different tests.   
 The first part of this project involves the command line user interface component. This part is for running tests and making quick changes without having to change any of the files, with the exception of the '.env' and 'config.ymal' files. This section includes the following callable functions:
@@ -16,7 +18,14 @@ The second part of this project does the bulk testing and runing prompts to the 
 The third and final section is for validation. This section is for comparing ground truth values for all three methods mentioned above. The log_checker methods in part one also fall into this category. This was designed to have a way of closely examining the results to come to conclusions and further make predictions and improvements.
 
 ## Experiments
-This project had 5 major itterations as it was fine tuned.
+This project had 5 major itterations as it was fine tuned.  
+The final results are shown in the Outputs category above the conclusion.   
+Throughout this project, the prompts were fine tuned along with the code to help improve the final results. In addition to the major itterations, there was a fine tuning phase to experiment with initial tweeks without wasting too many tokens (2-5 prompts were tested each time).    
+In this project, there were two main datasets being tested. They were for commonsense questions and fact verification. 150 commonsense questions and 100 fact verification questions were used for the results shown below. The goal was to produce greater results using the debate method with LLMs to improve accuracy and remove as many halucinations as possible.    
+In order to test the debating bethod to forcce more rational arguments between LLMs, two baselines were ccreate. The first baseline was a question with zero shot engineering. An initial prompt was used to explain the role of the agent. The second baseline is similar to the first, but it would sample 3 answers and return the response as a json format. This was done to better match the json format of the debate method used. After testing and debugging, it was found that the LLM struggled to give propper json responses. A future project could look at training an LLM to maintain the structure while also retaining the ability to answer properly.   
+The debate response was a complex process that in theory would force agents to rely on facts to perswade the judge/judges. As mentioned in the README.md, this project used 'meta-llama/Llama-3.1-8B-Instruct' for the debating agents. The size of the model was small, giving rise to issues structured debates. In order to better test this method, larger models should be used. The judge was using the 'Qwen/Qwen3-8B' model to go over the debate and determine the answer based on the facts presented by both sides.   
+To judge each debate, the LLM agent was prompted to determine its confidence on a scale of 1-5, summarize the debate so far, identify the weakest and strongest points, and explain why it gave the verdict it gave. This would help the judge model better reason its thoughts and come to a more accurate solution. A larger model would likely present better accuracy compared to the smaller models that were used in this assignment. This judge method would be run three times and pooled to get the final verdict with greater accuracy. In the event of a deadlock occuring (this would require an invalid response from a judge, likely due to impropper json formatting), the tripple judge will return a final verdict of NULL, thus automatically giving an impropper response. However, this is an edge case to mainly avoid crashes.   
+The final results would finally be tested against ground truths for all questions. This would be applyied to baselines, single judge (the first judge called), and the tripple judge concensus. The results are shown in the bar graph below in the Output section.       
 
 ## Analysis
 
